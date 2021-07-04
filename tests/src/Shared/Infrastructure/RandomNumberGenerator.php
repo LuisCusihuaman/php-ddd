@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace CodelyTv\Shared\Infrastructure;
 
-final class RandomNumberGenerator
+final class RandomNumberGeneratorTest
 {
     public function generate(): int
     {

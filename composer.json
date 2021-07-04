@@ -1,0 +1,39 @@
+{
+  "name": "codelytv/ddd-skeleton",
+  "license": "MIT",
+  "type": "project",
+  "description": "DDD php Skeleton - Monorepository",
+  "require": {
+    "php": ">7.2",
+
+    "ext-apcu": "*",
+    "ext-json": "*",
+    "ext-zend-opcache": "*",
+    "ext-pdo": "*",
+
+    "symfony/framework-bundle": "^4.3",
+    "symfony/dotenv": "^4.3",
+    "symfony/yaml": "^4.3"
+  },
+  "require-dev": {
+    "ext-xdebug": "*",
+
+    "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "CodelyTv\\Apps\\Mooc\\Backend\\": "apps/mooc/backend/src",
+      "CodelyTv\\Apps\\Mooc\\Frontend\\": "apps/mooc/frontend/src",
+
+      "CodelyTv\\Apps\\Backoffice\\Backend\\": "apps/backoffice/backend/src",
+      "CodelyTv\\Apps\\Backoffice\\Frontend\\": "apps/backoffice/frontend/src",
+
+      "CodelyTv\\": ["src"]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CodelyTv\\Tests\\": ["tests/src"]
+    }
+  }
+}

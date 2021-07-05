@@ -4,14 +4,14 @@
 namespace CodelyTv\Apps\Mooc\Backend\Controller\HealthCheck;
 
 
-use CodelyTv\Shared\Infrastructure\RandomNumberGenerator;
+use CodelyTv\Shared\Domain\RandomNumberGenerator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 final class HealthCheckGetController
 {
-    private $generator;
+    private RandomNumberGenerator $generator;
 
     public function __construct(RandomNumberGenerator $generator)
     {

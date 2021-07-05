@@ -4,7 +4,7 @@ use CodelyTv\Apps\Mooc\Backend\MoocBackendKernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
-require dirname(__DIR__).'/../bootstrap.php';
+require dirname(__DIR__) . '/../bootstrap.php';
 
 if ($_SERVER['APP_DEBUG']) {
     umask(0000);
@@ -20,7 +20,7 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false
     Request::setTrustedHosts([$trustedHosts]);
 }
 
-$kernel = new MoocBackendKernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
+$kernel = new MoocBackendKernel($_SERVER['APP_ENV'], (bool)$_SERVER['APP_DEBUG']);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

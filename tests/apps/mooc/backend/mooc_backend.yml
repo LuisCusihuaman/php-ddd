@@ -16,3 +16,8 @@ mooc_backend:
       contexts:
         - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiRequestContext
         - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiResponseContext
+    courses:
+      paths: [ tests/apps/mooc/backend/features/courses ]
+      contexts:
+        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiRequestContext
+        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiResponseContext

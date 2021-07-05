@@ -2,7 +2,7 @@ mooc_backend:
   extensions:
     FriendsOfBehat\SymfonyExtension:
       kernel:
-        class: CodelyTv\Apps\Mooc\Backend\MoocBackendKernel
+        class: LuisCusihuaman\Apps\Mooc\Backend\MoocBackendKernel
       bootstrap: apps/mooc/bootstrap.php
     Behat\MinkExtension:
       sessions:
@@ -14,5 +14,5 @@ mooc_backend:
     health_check:
       paths: [ tests/apps/mooc/backend/features/health_check ]
       contexts:
-        - CodelyTv\Tests\Shared\Infrastructure\Behat\ApiRequestContext
-        - CodelyTv\Tests\Shared\Infrastructure\Behat\ApiResponseContext
+        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiRequestContext
+        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiResponseContext

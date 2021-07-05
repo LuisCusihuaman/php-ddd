@@ -1,7 +1,7 @@
 <?php
 
 
-namespace CodelyTv\Shared\Domain;
+namespace LuisCusihuaman\Shared\Domain;
 
 
 interface RandomNumberGenerator

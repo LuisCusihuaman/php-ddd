@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace CodelyTv\Tests\Shared\Infrastructure;
+namespace LuisCusihuaman\Tests\Shared\Infrastructure;
 
-use CodelyTv\Shared\Domain\RandomNumberGenerator;
+use LuisCusihuaman\Shared\Domain\RandomNumberGenerator;
 
 final class ConstantRandomNumberGenerator implements RandomNumberGenerator
 {

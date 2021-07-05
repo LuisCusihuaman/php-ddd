@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace CodelyTv\Shared\Infrastructure;
+namespace LuisCusihuaman\Shared\Infrastructure;
 
-use CodelyTv\Shared\Domain\RandomNumberGenerator;
+use LuisCusihuaman\Shared\Domain\RandomNumberGenerator;
 
 final class PhpRandomNumberGenerator implements RandomNumberGenerator
 {

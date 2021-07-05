@@ -6,7 +6,7 @@ services:
     autoconfigure: true
     autowire: true
 
-  CodelyTv\Tests\:
+  LuisCusihuaman\Tests\:
     resource: '../../../../tests/src'
 
-  CodelyTv\Shared\Domain\RandomNumberGenerator: '@CodelyTv\Tests\Shared\Infrastructure\ConstantRandomNumberGenerator'
+  LuisCusihuaman\Shared\Domain\RandomNumberGenerator: '@LuisCusihuaman\Tests\Shared\Infrastructure\ConstantRandomNumberGenerator'

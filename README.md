@@ -2,7 +2,8 @@
 
 ## Installation
 
-`composer create-project codelytv/ddd-skeleton`
+`composer install`
 
 ## Usage
+
 `make start-local`

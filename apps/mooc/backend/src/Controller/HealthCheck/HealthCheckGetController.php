@@ -1,10 +1,10 @@
 <?php
 
 
-namespace CodelyTv\Apps\Mooc\Backend\Controller\HealthCheck;
+namespace LuisCusihuaman\Apps\Mooc\Backend\Controller\HealthCheck;
 
 
-use CodelyTv\Shared\Domain\RandomNumberGenerator;
+use LuisCusihuaman\Shared\Domain\RandomNumberGenerator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

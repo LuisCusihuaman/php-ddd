@@ -1,0 +1,4 @@
+courses:
+  path: /courses/{id}
+  controller: LuisCusihuaman\Apps\Mooc\Backend\Controller\Courses\CoursesPutController
+  methods: [ PUT ]

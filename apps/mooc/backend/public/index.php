@@ -1,15 +1,15 @@
 <?php
 
 use LuisCusihuaman\Apps\Mooc\Backend\MoocBackendKernel;
-use Symfony\Component\Debug\Debug;
+use Symfony\Component\ErrorHandler\DebugClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
-require dirname(__DIR__) . '/../bootstrap.php';
+require dirname(__DIR__) . '/../../bootstrap.php';
 
 if ($_SERVER['APP_DEBUG']) {
     umask(0000);
+    DebugClassLoader::enable();
 
-    Debug::enable();
 }
 
 if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ?? false) {

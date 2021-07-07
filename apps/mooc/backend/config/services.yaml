@@ -10,3 +10,7 @@ services:
 
   LuisCusihuaman\:
     resource: '../../../../src'
+
+  LuisCusihuaman\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

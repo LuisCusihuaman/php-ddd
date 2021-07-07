@@ -4,7 +4,8 @@
 namespace LuisCusihuaman\Apps\Mooc\Backend\Controller\Courses;
 
 
-use LuisCusihuaman\Mooc\Courses\Application\CourseCreator;
+use LuisCusihuaman\Mooc\Courses\Application\Create\CourseCreator;
+use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,11 +20,13 @@ class CoursesPutController
 
     public function __invoke(string $id, Request $request): Response
     {
-        $name = $request->get('name');
-        $duration = $request->get('duration');
-
-        $creator = $this->creator;
-        $creator($id, $name, $duration);
+        $this->creator->__invoke(
+            new CreateCourseRequest(
+                $id,
+                $request->request->get('name'),
+                $request->request->get('duration')
+            )
+        );
 
         return new Response("", Response::HTTP_CREATED);
     }

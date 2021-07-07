@@ -4,7 +4,8 @@
 namespace LuisCusihuaman\Tests\Mooc\Courses\Application;
 
 
-use LuisCusihuaman\Mooc\Courses\Application\CourseCreator;
+use LuisCusihuaman\Mooc\Courses\Application\Create\CourseCreator;
+use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseRequest;
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
 use PHPUnit\Framework\TestCase;
@@ -23,6 +24,6 @@ final class CourseCreatorTest extends TestCase
         $course = new Course($id, $name, $duration);
         $repository->method('save')->with($course);
 
-        $creator->__invoke($id, $name, $duration);
+        $creator->__invoke(new CreateCourseRequest($id, $name, $duration));
     }
 }

@@ -170,5 +170,5 @@ modules.xml
 ### Symfony Patch ###
 /web/css/
 /web/js/
-
+*.repo
 # End of https://www.toptal.com/developers/gitignore/api/phpstorm+all,symfony

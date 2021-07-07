@@ -3,7 +3,7 @@ mooc_backend:
     FriendsOfBehat\SymfonyExtension:
       kernel:
         class: LuisCusihuaman\Apps\Mooc\Backend\MoocBackendKernel
-      bootstrap: apps/mooc/bootstrap.php
+      bootstrap: apps/bootstrap.php
     Behat\MinkExtension:
       sessions:
         symfony:
@@ -16,6 +16,7 @@ mooc_backend:
       contexts:
         - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiRequestContext
         - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiResponseContext
+
     courses:
       paths: [ tests/apps/mooc/backend/features/courses ]
       contexts:

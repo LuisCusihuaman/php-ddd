@@ -2,7 +2,8 @@
 
 use Symfony\Component\Dotenv\Dotenv;
 
-$rootPath = dirname(__DIR__);
+$rootPath =
+    dirname(__DIR__);
 
 require $rootPath . '/vendor/autoload.php';
 

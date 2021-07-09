@@ -5,6 +5,7 @@ namespace LuisCusihuaman\Mooc\Courses\Infrastructure;
 
 
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
+use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
 
 class FileCourseRepository implements CourseRepository
@@ -16,9 +17,9 @@ class FileCourseRepository implements CourseRepository
         file_put_contents($this->fileName($course->id()), serialize($course));
     }
 
-    public function search(string $id): ?Course
+    public function search(CourseId $id): ?Course
     {
-        return file_exists($this->fileName($id)) ? unserialize(file_get_contents($this->fileName($id))) : null;
+        return file_exists($this->fileName($id->value())) ? unserialize(file_get_contents($this->fileName($id))) : null;
     }
 
     private function fileName(string $id): string

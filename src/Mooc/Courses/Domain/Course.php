@@ -6,17 +6,17 @@ namespace LuisCusihuaman\Mooc\Courses\Domain;
 
 class Course
 {
-    private string $id;
+    private CourseId $id;
     private string $name;
     private string $duration;
 
     /**
      * Course constructor.
-     * @param string $id
+     * @param CourseId $id
      * @param string $name
      * @param string $duration
      */
-    public function __construct(string $id, string $name, string $duration)
+    public function __construct(CourseId $id, string $name, string $duration)
     {
 
         $this->id = $id;
@@ -24,10 +24,7 @@ class Course
         $this->duration = $duration;
     }
 
-    /**
-     * @return string
-     */
-    public function Id(): string
+    public function id(): CourseId
     {
         return $this->id;
     }
@@ -35,7 +32,7 @@ class Course
     /**
      * @return string
      */
-    public function Name(): string
+    public function name(): string
     {
         return $this->name;
     }
@@ -43,7 +40,7 @@ class Course
     /**
      * @return string
      */
-    public function Duration(): string
+    public function duration(): string
     {
         return $this->duration;
     }

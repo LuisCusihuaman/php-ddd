@@ -5,6 +5,7 @@ namespace LuisCusihuaman\Mooc\Courses\Application\Create;
 
 
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
+use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
 
 class CourseCreator
@@ -19,7 +20,8 @@ class CourseCreator
 
     public function __invoke(CreateCourseRequest $request)
     {
-        $course = new Course($request->id(), $request->name(), $request->duration());
+        $id = new CourseId($request->id());
+        $course = new Course($id, $request->name(), $request->duration());
         $this->repository->save($course);
     }
 }

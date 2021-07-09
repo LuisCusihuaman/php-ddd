@@ -7,16 +7,10 @@ namespace LuisCusihuaman\Mooc\Courses\Domain;
 class Course
 {
     private CourseId $id;
-    private string $name;
-    private string $duration;
+    private CourseName $name;
+    private CourseDuration $duration;
 
-    /**
-     * Course constructor.
-     * @param CourseId $id
-     * @param string $name
-     * @param string $duration
-     */
-    public function __construct(CourseId $id, string $name, string $duration)
+    public function __construct(CourseId $id, CourseName $name, CourseDuration $duration)
     {
 
         $this->id = $id;
@@ -29,18 +23,12 @@ class Course
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function name(): string
+    public function name(): CourseName
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function duration(): string
+    public function duration(): CourseDuration
     {
         return $this->duration;
     }

@@ -5,7 +5,9 @@ namespace LuisCusihuaman\Tests\Mooc\Courses\Infrastructure;
 
 
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
+use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
+use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
 use LuisCusihuaman\Mooc\Courses\Infrastructure\FileCourseRepository;
 use PHPUnit\Framework\TestCase;
 
@@ -18,8 +20,8 @@ final class FileCourseRepositoryTest extends TestCase
         $repository = new FileCourseRepository();
         $course = new Course(
             new CourseId('decf33ca-81a7-419f-a07a-74f214e928e5'),
-            'name',
-            'duration'
+            new CourseName('name'),
+            new CourseDuration('duration')
         );
 
         $repository->save($course);
@@ -31,8 +33,8 @@ final class FileCourseRepositoryTest extends TestCase
         $repository = new FileCourseRepository();
         $course = new Course(
             new CourseId('decf33ca-81a7-419f-a07a-74f214e928e5'),
-            'name',
-            'duration'
+            new CourseName('name'),
+            new CourseDuration('duration')
         );
 
         $repository->save($course);

@@ -1,3 +1,7 @@
+imports:
+#  - { resource: ../../../../src/Mooc/Shared/Infrastructure/Symfony/DependencyInjection/mooc_database.yaml }
+  - { resource: ../../../../src/Mooc/Shared/Infrastructure/Symfony/DependencyInjection/mooc_services.yaml }
+
 services:
   _defaults:
     autoconfigure: true
@@ -6,7 +10,7 @@ services:
 
   LuisCusihuaman\Apps\Mooc\Backend\Controller\:
     resource: '../src/Controller'
-    tags: ['controller.service_arguments']
+    tags: [ 'controller.service_arguments' ]
 
   LuisCusihuaman\:
     resource: '../../../../src'

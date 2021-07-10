@@ -1,0 +1,4 @@
+services:
+
+  # Courses
+  LuisCusihuaman\Mooc\Courses\Domain\CourseRepository: '@LuisCusihuaman\Mooc\Courses\Infrastructure\Persistence\FileCourseRepository' #mysql

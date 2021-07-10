@@ -104,7 +104,7 @@ fabric.properties
 .idea/
 
 # Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
-
+courses.*.repo
 *.iml
 modules.xml
 .idea/misc.xml
@@ -152,11 +152,8 @@ modules.xml
 /web/uploads/
 
 # PHPUnit
-/app/phpunit.xml
-/phpunit.xml
 
 # Build data
-/build/
 
 # Composer PHAR
 /composer.phar

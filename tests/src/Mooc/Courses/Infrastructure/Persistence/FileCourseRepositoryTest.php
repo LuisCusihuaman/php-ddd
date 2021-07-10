@@ -1,11 +1,11 @@
 <?php
 
 
-namespace LuisCusihuaman\Tests\Mooc\Courses\Infrastructure;
+namespace LuisCusihuaman\Tests\Mooc\Courses\Infrastructure\Persistence;
 
-use LuisCusihuaman\Tests\Mooc\Courses\CoursesModuleInfrastructureTestCase;
 use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseIdMother;
 use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseMother;
+
 
 final class FileCourseRepositoryTest extends CoursesModuleInfrastructureTestCase
 {

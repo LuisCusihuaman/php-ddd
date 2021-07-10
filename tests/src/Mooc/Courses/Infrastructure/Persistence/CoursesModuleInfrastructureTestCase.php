@@ -1,10 +1,10 @@
 <?php
 
 
-namespace LuisCusihuaman\Tests\Mooc\Courses;
+namespace LuisCusihuaman\Tests\Mooc\Courses\Infrastructure\Persistence;
 
 
-use LuisCusihuaman\Mooc\Courses\Infrastructure\FileCourseRepository;
+use LuisCusihuaman\Mooc\Courses\Infrastructure\Persistence\FileCourseRepository;
 use PHPUnit\Framework\TestCase;
 
 class CoursesModuleInfrastructureTestCase extends TestCase

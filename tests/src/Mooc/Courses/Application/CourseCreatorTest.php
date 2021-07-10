@@ -5,32 +5,30 @@ namespace LuisCusihuaman\Tests\Mooc\Courses\Application;
 
 
 use LuisCusihuaman\Mooc\Courses\Application\Create\CourseCreator;
-use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseRequest;
-use LuisCusihuaman\Mooc\Courses\Domain\Course;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
-use PHPUnit\Framework\TestCase;
+use LuisCusihuaman\Tests\Mooc\Courses\Application\Create\CreateCourseRequestMother;
+use LuisCusihuaman\Tests\Mooc\Courses\CoursesModuleUnitTestCase;
+use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseMother;
 
-final class CourseCreatorTest extends TestCase
+final class CourseCreatorTest extends CoursesModuleUnitTestCase
 {
+    private CourseCreator $creator;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->creator = new CourseCreator($this->repository());
+    }
+
     /** @test */
     public function it_should_create_a_valid_course(): void
     {
-        $repository = $this->createMock(CourseRepository::class);
-        $creator = new CourseCreator($repository);
+        $request = CreateCourseRequestMother::random();
 
-        $request = new CreateCourseRequest('decf33ca-81a7-419f-a07a-74f214e928e5', 'some-name', 'some-duration');
+        $course = CourseMother::fromRequest($request);
 
-        $course = new Course(
-            new CourseId($request->id()),
-            new CourseName($request->name()),
-            new CourseDuration($request->duration())
-        );
+        $this->shouldSave($course);
 
-        $repository->method('save')->with($course);
-
-        $creator->__invoke($request);
+        $this->creator->__invoke($request);
     }
 }

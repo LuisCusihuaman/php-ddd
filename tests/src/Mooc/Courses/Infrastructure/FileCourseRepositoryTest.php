@@ -4,11 +4,9 @@
 namespace LuisCusihuaman\Tests\Mooc\Courses\Infrastructure;
 
 
-use LuisCusihuaman\Mooc\Courses\Domain\Course;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
 use LuisCusihuaman\Mooc\Courses\Infrastructure\FileCourseRepository;
+use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseMother;
 use PHPUnit\Framework\TestCase;
 
 
@@ -18,11 +16,7 @@ final class FileCourseRepositoryTest extends TestCase
     public function it_should_save_a_course(): void
     {
         $repository = new FileCourseRepository();
-        $course = new Course(
-            new CourseId('decf33ca-81a7-419f-a07a-74f214e928e5'),
-            new CourseName('name'),
-            new CourseDuration('duration')
-        );
+        $course = CourseMother::random();
 
         $repository->save($course);
     }
@@ -31,11 +25,7 @@ final class FileCourseRepositoryTest extends TestCase
     public function it_should_return_an_existing_course(): void
     {
         $repository = new FileCourseRepository();
-        $course = new Course(
-            new CourseId('decf33ca-81a7-419f-a07a-74f214e928e5'),
-            new CourseName('name'),
-            new CourseDuration('duration')
-        );
+        $course = CourseMother::random();
 
         $repository->save($course);
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63c59a1c6d1cbe4e1530065efd7e32e5",
+    "content-hash": "50b53a95d17419590ffb8ec01f0d7854",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1076,6 +1076,64 @@
                 "source": "https://github.com/doctrine/persistence/tree/2.2.1"
             },
             "time": "2021-05-19T07:07:01+00:00"
+        },
+        {
+            "name": "lambdish/phunctional",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lambdish/phunctional.git",
+                "reference": "999487ad2027336e746aee3f9a4666ea3c54f846"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lambdish/phunctional/zipball/999487ad2027336e746aee3f9a4666ea3c54f846",
+                "reference": "999487ad2027336e746aee3f9a4666ea3c54f846",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/_bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jorge Ávila",
+                    "email": "avilacardenosa@gmail.com"
+                },
+                {
+                    "name": "Rafa Gómez",
+                    "email": "rgomezcasas@gmail.com"
+                },
+                {
+                    "name": "Eloi Poch",
+                    "email": "eloi.poch@gmail.com"
+                }
+            ],
+            "description": "λ PHP functional library",
+            "keywords": [
+                "functional",
+                "generator",
+                "lambda",
+                "library",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/Lambdish/phunctional/issues",
+                "source": "https://github.com/Lambdish/phunctional/tree/master"
+            },
+            "time": "2016-09-12T20:33:11+00:00"
         },
         {
             "name": "psr/cache",

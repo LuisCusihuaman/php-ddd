@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LuisCusihuaman\Tests\Mooc\Courses\Infrastructure\Persistence;
+namespace LuisCusihuaman\Tests\Mooc\Courses;
 
 
 use LuisCusihuaman\Mooc\Courses\Infrastructure\Persistence\FileCourseRepository;

@@ -13,14 +13,14 @@ final class MoocEntityManagerFactory
     private const SCHEMA_PATH = __DIR__ . '/../../../../../databases/mooc.sql';
 
     /**
-     * @throws ORMException
      * @throws Exception
+     * @throws ORMException
      */
     public static function create(array $parameters, string $environment): EntityManagerInterface
     {
-        $isDevMode = 'prod' === $environment;
+        $isDevMode = 'prod' !== $environment;
 
-        $prefixes = DoctrinePrefixesSearcher::inPath(__DIR__ . '/../../../../Mooc', 'CodelyTv\Mooc');
+        $prefixes = DoctrinePrefixesSearcher::inPath(__DIR__ . '/../../../../Mooc', 'LuisCusihuaman\Mooc');
         $dbalCustomTypesClasses = DbalTypesSearcher::inPath(__DIR__ . '/../../../../Mooc', 'Mooc');
 
         return DoctrineEntityManagerFactory::create(

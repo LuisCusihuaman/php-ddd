@@ -4,13 +4,13 @@
 namespace LuisCusihuaman\Tests\Mooc\Courses;
 
 
-use LuisCusihuaman\Mooc\Courses\Infrastructure\Persistence\FileCourseRepository;
-use PHPUnit\Framework\TestCase;
+use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
+use LuisCusihuaman\Tests\Mooc\Shared\Infrastructure\PhpUnit\MoocContextInfrastructureTestCase;
 
-class CoursesModuleInfrastructureTestCase extends TestCase
+class CoursesModuleInfrastructureTestCase extends MoocContextInfrastructureTestCase
 {
-    protected function repository(): FileCourseRepository
+    protected function repository(): CourseRepository
     {
-        return new FileCourseRepository();
+        return $this->service(CourseRepository::class);
     }
 }

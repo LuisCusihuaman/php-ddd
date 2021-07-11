@@ -8,7 +8,7 @@ use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseIdMother;
 use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseMother;
 
 
-final class FileCourseRepositoryTest extends CoursesModuleInfrastructureTestCase
+final class CourseRepositoryTest extends CoursesModuleInfrastructureTestCase
 {
     /** @test */
     public function it_should_save_a_course(): void

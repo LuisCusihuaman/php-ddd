@@ -10,7 +10,7 @@ use LuisCusihuaman\Mooc\Courses\Domain\Course;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
 
-final class MySqlCourseRepository implements CourseRepository
+final class DoctrineCourseRepository implements CourseRepository
 {
     private EntityManager $entityManager;
 

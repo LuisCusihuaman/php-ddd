@@ -1,11 +1,11 @@
 <?php
 
 
-namespace LuisCusihuaman\Mooc\Courses\Infrastructure\Persistence\Mappings;
+namespace LuisCusihuaman\Mooc\Courses\Infrastructure\Persistence\Doctrine;
 
 
 use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
-use LuisCusihuaman\Shared\Infrastructure\Persistence\Mappings\UuidType;
+use LuisCusihuaman\Shared\Infrastructure\Persistence\Doctrine\UuidType;
 
 class CourseIdType extends UuidType
 {

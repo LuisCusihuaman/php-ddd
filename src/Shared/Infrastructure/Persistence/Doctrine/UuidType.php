@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LuisCusihuaman\Shared\Infrastructure\Persistence\Mappings;
+namespace LuisCusihuaman\Shared\Infrastructure\Persistence\Doctrine;
 
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;

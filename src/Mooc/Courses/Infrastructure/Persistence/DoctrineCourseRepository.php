@@ -7,8 +7,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
+use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 
 final class DoctrineCourseRepository implements CourseRepository
 {

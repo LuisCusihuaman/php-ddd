@@ -6,10 +6,11 @@ namespace LuisCusihuaman\Mooc\Courses\Application\Create;
 
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
+use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher;
+
 
 class CourseCreator
 {

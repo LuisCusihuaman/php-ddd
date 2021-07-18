@@ -4,6 +4,8 @@
 namespace LuisCusihuaman\Mooc\Courses\Domain;
 
 
+use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
+
 interface CourseRepository
 {
 

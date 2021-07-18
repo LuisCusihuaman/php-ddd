@@ -7,8 +7,8 @@ namespace LuisCusihuaman\Tests\Mooc\Courses\Domain;
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseCreatedDomainEvent;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
+use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 
 final class CourseCreatedDomainEventMother
 {

@@ -5,8 +5,8 @@ namespace LuisCusihuaman\Mooc\Courses\Infrastructure\Persistence;
 
 
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
+use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 
 class FileCourseRepository implements CourseRepository
 {

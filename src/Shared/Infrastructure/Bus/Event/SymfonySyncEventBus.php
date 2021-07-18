@@ -7,6 +7,7 @@ namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Domain\Bus\Event\EventBus;
 use LuisCusihuaman\Shared\Infrastructure\Bus\CallableFirstParameterExtractor;
+use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
@@ -30,6 +31,9 @@ class SymfonySyncEventBus implements EventBus
 
     public function notify(DomainEvent $event): void
     {
-        $this->bus->dispatch($event);
+        try {
+            $this->bus->dispatch($event);
+        } catch (NoHandlerForMessageException $error) {
+        }
     }
 }

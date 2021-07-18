@@ -4,7 +4,7 @@
 namespace LuisCusihuaman\Tests\Mooc\Courses\Domain;
 
 
-use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
+use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 use LuisCusihuaman\Tests\Shared\Domain\UuidMother;
 
 class CourseIdMother

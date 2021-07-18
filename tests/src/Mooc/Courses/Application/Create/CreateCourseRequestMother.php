@@ -6,8 +6,8 @@ namespace LuisCusihuaman\Tests\Mooc\Courses\Application\Create;
 
 use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseRequest;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
-use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
+use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseDurationMother;
 use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseIdMother;
 use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseNameMother;

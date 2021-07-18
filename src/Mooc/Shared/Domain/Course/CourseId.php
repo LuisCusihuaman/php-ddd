@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LuisCusihuaman\Mooc\Courses\Domain;
+namespace LuisCusihuaman\Mooc\Shared\Domain\Course;
 
 use LuisCusihuaman\Shared\Domain\ValueObject\Uuid;
 

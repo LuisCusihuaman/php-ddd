@@ -4,6 +4,7 @@
 namespace LuisCusihuaman\Mooc\Courses\Domain;
 
 
+use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 use LuisCusihuaman\Shared\Domain\Aggregate\AggregateRoot;
 
 final class Course extends AggregateRoot

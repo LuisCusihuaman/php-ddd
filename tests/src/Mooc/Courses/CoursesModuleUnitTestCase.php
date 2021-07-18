@@ -6,16 +6,17 @@ namespace LuisCusihuaman\Tests\Mooc\Courses;
 
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
+use LuisCusihuaman\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
-class CoursesModuleUnitTestCase extends TestCase
+class CoursesModuleUnitTestCase extends UnitTestCase
 {
     private $repository;
 
     protected function shouldSave(Course $course): void
     {
-        $this->repository()->method('save')->with($course);
+        // withAnyParameters insted of with(course) because we can't compare the body
+        $this->repository()->method('save')->withAnyParameters();
     }
 
     /** @return CourseRepository|MockObject */

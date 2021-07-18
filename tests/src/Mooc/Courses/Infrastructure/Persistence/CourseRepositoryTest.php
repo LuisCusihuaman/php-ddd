@@ -3,9 +3,9 @@
 
 namespace LuisCusihuaman\Tests\Mooc\Courses\Infrastructure\Persistence;
 
+use LuisCusihuaman\Tests\Mooc\Courses\Application\Domain\CourseIdMother;
+use LuisCusihuaman\Tests\Mooc\Courses\Application\Domain\CourseMother;
 use LuisCusihuaman\Tests\Mooc\Courses\CoursesModuleInfrastructureTestCase;
-use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseIdMother;
-use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseMother;
 
 
 final class CourseRepositoryTest extends CoursesModuleInfrastructureTestCase

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LuisCusihuaman\Tests\Mooc\Courses\Domain;
+namespace LuisCusihuaman\Tests\Mooc\Courses\Application\Domain;
 
 use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
 use LuisCusihuaman\Tests\Shared\Domain\WordMother;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LuisCusihuaman\Tests\Mooc\Courses\Application\Domain;
+namespace LuisCusihuaman\Tests\Mooc\Courses\Domain;
 
 
 use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;

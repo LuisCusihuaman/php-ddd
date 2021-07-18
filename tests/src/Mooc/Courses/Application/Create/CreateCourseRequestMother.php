@@ -8,9 +8,9 @@ use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseRequest;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
-use LuisCusihuaman\Tests\Mooc\Courses\Application\Domain\CourseDurationMother;
-use LuisCusihuaman\Tests\Mooc\Courses\Application\Domain\CourseIdMother;
-use LuisCusihuaman\Tests\Mooc\Courses\Application\Domain\CourseNameMother;
+use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseDurationMother;
+use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseIdMother;
+use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseNameMother;
 
 final class CreateCourseRequestMother
 {

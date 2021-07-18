@@ -4,8 +4,8 @@
 namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
 
 
-use LuisCusihuaman\Shared\Domain\Bus\DomainEvent;
-use LuisCusihuaman\Shared\Domain\Bus\EventBus;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
+use LuisCusihuaman\Shared\Domain\Bus\Event\EventBus;
 use LuisCusihuaman\Shared\Infrastructure\Bus\CallableFirstParameterExtractor;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;

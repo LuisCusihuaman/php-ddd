@@ -5,9 +5,9 @@ namespace LuisCusihuaman\Tests\Mooc\Courses\Application\Create;
 
 
 use LuisCusihuaman\Mooc\Courses\Application\Create\CourseCreator;
-use LuisCusihuaman\Tests\Mooc\Courses\Application\Domain\CourseCreatedDomainEventMother;
-use LuisCusihuaman\Tests\Mooc\Courses\Application\Domain\CourseMother;
 use LuisCusihuaman\Tests\Mooc\Courses\CoursesModuleUnitTestCase;
+use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseCreatedDomainEventMother;
+use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseMother;
 
 final class CourseCreatorTest extends CoursesModuleUnitTestCase
 {

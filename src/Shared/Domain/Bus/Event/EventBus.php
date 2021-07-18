@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LuisCusihuaman\Shared\Domain\Bus;
+namespace LuisCusihuaman\Shared\Domain\Bus\Event;
 
 
 interface EventBus

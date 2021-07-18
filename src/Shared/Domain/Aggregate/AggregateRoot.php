@@ -4,7 +4,7 @@
 namespace LuisCusihuaman\Shared\Domain\Aggregate;
 
 
-use LuisCusihuaman\Shared\Domain\Bus\DomainEvent;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 
 abstract class AggregateRoot
 {

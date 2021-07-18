@@ -4,8 +4,8 @@
 namespace LuisCusihuaman\Tests\Shared\Infrastructure\PhpUnit;
 
 
-use LuisCusihuaman\Shared\Domain\Bus\DomainEvent;
-use LuisCusihuaman\Shared\Domain\Bus\DomainEventPublisher;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

@@ -4,7 +4,7 @@
 namespace LuisCusihuaman\Mooc\Courses\Domain;
 
 
-use LuisCusihuaman\Shared\Domain\Bus\DomainEvent;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 
 final class CourseCreatedDomainEvent extends DomainEvent
 {

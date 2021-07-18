@@ -5,8 +5,8 @@ namespace LuisCusihuaman\Tests\Shared\Infrastructure\Behat;
 
 
 use Behat\Behat\Context\Context;
-use LuisCusihuaman\Shared\Domain\Bus\DomainEvent;
-use LuisCusihuaman\Shared\Domain\Bus\SymfonySyncDomainEventPublisher;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
+use LuisCusihuaman\Shared\Domain\Bus\Event\SymfonySyncDomainEventPublisher;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncEventBus;
 use LuisCusihuaman\Tests\Shared\Infrastructure\Doctrine\DatabaseConnections;
 use function Lambdish\Phunctional\each;

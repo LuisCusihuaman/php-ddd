@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LuisCusihuaman\Shared\Infrastructure\Bus;
 
-use LuisCusihuaman\Shared\Domain\Bus\DomainEventSubscriber;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventSubscriber;
 use function Lambdish\Phunctional\reduce;
 
 final class CallableFirstParameterExtractor

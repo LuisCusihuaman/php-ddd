@@ -9,7 +9,7 @@ use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseId;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
-use LuisCusihuaman\Shared\Domain\Bus\DomainEventPublisher;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher;
 
 class CourseCreator
 {

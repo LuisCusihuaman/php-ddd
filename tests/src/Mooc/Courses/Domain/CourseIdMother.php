@@ -19,4 +19,9 @@ class CourseIdMother
     {
         return self::create(UuidMother::random());
     }
+
+    public static function creator(): callable
+    {
+        return static fn() => self::random();
+    }
 }

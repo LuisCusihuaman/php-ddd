@@ -7,6 +7,9 @@ services:
     autoconfigure: true
     autowire: true
 
+  _instanceof:
+    LuisCusihuaman\Shared\Domain\Bus\DomainEventSubscriber:
+      tags: [ 'luiscusihuaman.domain_event_subscriber' ]
 
   LuisCusihuaman\Apps\Mooc\Backend\Controller\:
     resource: '../src/Controller'
@@ -14,6 +17,9 @@ services:
 
   LuisCusihuaman\:
     resource: '../../../../src'
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncEventBus:
+    arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
 
   LuisCusihuaman\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
     tags:

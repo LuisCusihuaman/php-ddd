@@ -4,7 +4,9 @@
 namespace LuisCusihuaman\Mooc\Courses\Domain;
 
 
-class Course
+use LuisCusihuaman\Shared\Domain\Aggregate\AggregateRoot;
+
+final class Course extends AggregateRoot
 {
     private CourseId $id;
     private CourseName $name;
@@ -12,10 +14,24 @@ class Course
 
     public function __construct(CourseId $id, CourseName $name, CourseDuration $duration)
     {
-
         $this->id = $id;
         $this->name = $name;
         $this->duration = $duration;
+    }
+
+    public static function create(CourseId $id, CourseName $name, CourseDuration $duration): self
+    {
+        $course = new self($id, $name, $duration);
+
+        $course->record(
+            new CourseCreatedDomainEvent(
+                $id->value(),
+                $name->value(),
+                $duration->value()
+            )
+        );
+
+        return $course;
     }
 
     public function id(): CourseId

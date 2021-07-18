@@ -2,6 +2,8 @@
 
 namespace LuisCusihuaman\Shared\Domain;
 
+use DateTimeInterface;
+
 final class Utils
 {
     public static function endsWith(string $needle, string $haystack): bool
@@ -12,5 +14,14 @@ final class Utils
         }
 
         return (substr($haystack, -$length) === $needle);
+    }
+
+    public static function dateToString(DateTimeInterface $date): string
+    {
+        $timestamp = $date->getTimestamp();
+        $microseconds = $date->format('u');
+        $millisecondsOnASecond = 1000;
+
+        return (string)(((float)($timestamp . '.' . $microseconds)) * $millisecondsOnASecond);
     }
 }

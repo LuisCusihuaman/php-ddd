@@ -14,11 +14,11 @@ mooc_backend:
     health_check:
       paths: [ tests/apps/mooc/backend/features/health_check ]
       contexts:
-        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiRequestContext
-        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiResponseContext
+        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
+        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiContext
 
     courses:
       paths: [ tests/apps/mooc/backend/features/courses ]
       contexts:
-        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiRequestContext
-        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiResponseContext
+        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
+        - LuisCusihuaman\Tests\Shared\Infrastructure\Behat\ApiContext

@@ -10,3 +10,6 @@ services:
     resource: '../../../../tests/src'
 
   LuisCusihuaman\Shared\Domain\RandomNumberGenerator: '@LuisCusihuaman\Tests\Shared\Infrastructure\ConstantRandomNumberGenerator'
+
+  LuisCusihuaman\Tests\Shared\Infrastructure\Doctrine\DatabaseConnections:
+    arguments: [ !tagged luiscusihuaman.database_connection ]

@@ -5,13 +5,13 @@ namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
 
 
 use LuisCusihuaman\Shared\Domain\Bus\DomainEvent;
+use LuisCusihuaman\Shared\Domain\Bus\EventBus;
 use LuisCusihuaman\Shared\Infrastructure\Bus\CallableFirstParameterExtractor;
-use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 
-class SymfonySyncEventBus
+class SymfonySyncEventBus implements EventBus
 {
     private $bus;
 
@@ -28,14 +28,8 @@ class SymfonySyncEventBus
         );
     }
 
-    public function publish(DomainEvent ...$events): void
+    public function notify(DomainEvent $event): void
     {
-        foreach ($events as $event) {
-            try {
-                $this->bus->dispatch($event);
-            } catch (NoHandlerForMessageException $error) {
-            }
-        }
+        $this->bus->dispatch($event);
     }
-
 }

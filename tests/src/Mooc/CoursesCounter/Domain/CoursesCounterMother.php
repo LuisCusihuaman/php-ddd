@@ -9,6 +9,7 @@ use LuisCusihuaman\Mooc\CoursesCounter\Domain\CoursesCounterId;
 use LuisCusihuaman\Mooc\CoursesCounter\Domain\CoursesCounterTotal;
 use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 use LuisCusihuaman\Tests\Mooc\Courses\Domain\CourseIdMother;
+use LuisCusihuaman\Tests\Shared\Domain\Repeater;
 
 final class CoursesCounterMother
 {

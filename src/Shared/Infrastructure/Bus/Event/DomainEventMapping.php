@@ -4,8 +4,8 @@
 namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
 
 
-use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventSubscriber;
+use RuntimeException;
 use function Lambdish\Phunctional\reduce;
 use function Lambdish\Phunctional\reindex;
 
@@ -20,6 +20,10 @@ final class DomainEventMapping
 
     public function for(string $name)
     {
+        if (!isset($this->mapping[$name])) {
+            throw new RuntimeException("The Domain Event Class for <$name> doesn't exists or have no subscribers");
+        }
+
         return $this->mapping[$name];
     }
 
@@ -37,6 +41,8 @@ final class DomainEventMapping
 
     private function eventNameExtractor(): callable
     {
-        return static fn(DomainEvent $event) => $event::eventName();
+        return static function (string $eventClass): string {
+            return $eventClass::eventName();
+        };
     }
 }

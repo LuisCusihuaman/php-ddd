@@ -17,8 +17,9 @@ class CoursesCounter extends AggregateRoot
     {
         $this->id = $id;
         $this->total = $total;
-        $this->existingCourses = reindex(fn(CourseId $id) => $id->value(), $existingCourses);
+        $this->existingCourses = $existingCourses;
     }
+
 
     public static function initialize(CoursesCounterId $id): self
     {
@@ -27,9 +28,11 @@ class CoursesCounter extends AggregateRoot
 
     public function hasIncremented(CourseId $courseId): bool
     {
-        $courseId = $courseId->value();
-        return isset($this->existingCourses()[$courseId]);
+        $indexedCourses = reindex(fn(CourseId $id) => $id->value(), $this->existingCourses());
+
+        return isset($indexedCourses[$courseId->value()]);
     }
+
 
     public function increment(CourseId $courseId): void
     {

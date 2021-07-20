@@ -22,7 +22,7 @@ services:
     arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
 
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventMapping:
-    arguments: [ !tagged codely.domain_event_subscriber ]
+    arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
 
   LuisCusihuaman\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
     tags:

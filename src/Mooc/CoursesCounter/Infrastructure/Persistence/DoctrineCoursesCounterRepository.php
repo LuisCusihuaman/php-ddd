@@ -4,19 +4,26 @@
 namespace LuisCusihuaman\Mooc\CoursesCounter\Infrastructure\Persistence;
 
 
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use LuisCusihuaman\Mooc\CoursesCounter\Domain\CoursesCounter;
 use LuisCusihuaman\Mooc\CoursesCounter\Domain\CoursesCounterRepository;
+use LuisCusihuaman\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 
-class DoctrineCoursesCounterRepository implements CoursesCounterRepository
+class DoctrineCoursesCounterRepository extends DoctrineRepository implements CoursesCounterRepository
 {
 
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
     public function save(CoursesCounter $counter): void
     {
-        // TODO: Implement save() method.
+        $this->persist($counter);
     }
 
     public function search(): ?CoursesCounter
     {
-        // TODO: Implement search() method.
+        return $this->repository(CoursesCounter::class)->findOneBy([]);
     }
 }

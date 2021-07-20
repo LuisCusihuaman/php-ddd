@@ -5,7 +5,9 @@ namespace LuisCusihuaman\Tests\Shared\Infrastructure\Behat;
 
 
 use Behat\Behat\Context\Context;
+use Behat\Gherkin\Node\PyStringNode;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventUnserializer;
 use LuisCusihuaman\Shared\Domain\Bus\Event\SymfonySyncDomainEventPublisher;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncEventBus;
 use LuisCusihuaman\Tests\Shared\Infrastructure\Doctrine\DatabaseConnections;
@@ -16,16 +18,19 @@ class ApplicationFeatureContext implements Context
     private $connections;
     private $publisher;
     private $bus;
+    private $unserializer;
 
     public function __construct(
         DatabaseConnections $connections,
         SymfonySyncDomainEventPublisher $publisher,
-        SymfonySyncEventBus $bus
+        SymfonySyncEventBus $bus,
+        DomainEventUnserializer $unserializer
     )
     {
         $this->connections = $connections;
         $this->publisher = $publisher;
         $this->bus = $bus;
+        $this->unserializer = $unserializer;
     }
 
     /** @BeforeScenario */
@@ -44,5 +49,15 @@ class ApplicationFeatureContext implements Context
                 $this->publisher->popPublishedEvents()
             );
         }
+    }
+
+    /**
+     * @Given /^I send an event to the event bus:$/
+     */
+    public function iSendAnEventToTheEventBus(PyStringNode $event)
+    {
+        $domainEvent = $this->unserializer->unserialize($event->getRaw());
+
+        $this->bus->notify($domainEvent);
     }
 }

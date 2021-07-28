@@ -7,36 +7,56 @@ namespace LuisCusihuaman\Tests\Shared\Infrastructure\PhpUnit;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher;
 use LuisCusihuaman\Shared\Domain\UuidGenerator;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
+use LuisCusihuaman\Tests\Shared\Domain\TestUtils;
+use Mockery;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Mockery\Matcher\MatcherAbstract;
+use Mockery\MockInterface;
 
-abstract class UnitTestCase extends TestCase
+abstract class UnitTestCase extends MockeryTestCase
 {
     private $domainEventPublisher;
     private $uuidGenerator;
 
-    protected function shouldPublishDomainEvent(DomainEvent $domainEvent): void
+    protected function mock(string $className): MockInterface
     {
-        $this->domainEventPublisher()->method('publish')->withAnyParameters();
+        return Mockery::mock($className);
     }
 
-    /** @return DomainEventPublisher|MockObject */
-    protected function domainEventPublisher(): MockObject
+    /** @return DomainEventPublisher|MockInterface */
+    protected function domainEventPublisher(): MockInterface
     {
         return $this->domainEventPublisher = $this->domainEventPublisher
-            ?: $this->createMock(DomainEventPublisher::class);
+            ?: $this->mock(DomainEventPublisher::class);
+    }
+
+    /** @return UuidGenerator|MockInterface */
+    protected function uuidGenerator(): MockInterface
+    {
+        return $this->uuidGenerator = $this->uuidGenerator
+            ?: $this->mock(UuidGenerator::class);
+    }
+
+    protected function shouldPublishDomainEvent(DomainEvent $domainEvent): void
+    {
+        $this->domainEventPublisher()
+            ->shouldReceive('publish')
+            ->with($this->similarTo($domainEvent))
+            ->andReturnNull();
     }
 
     protected function shouldGenerateUuid(string $uuid): void
     {
-        $this->uuidGenerator()->method('generate')->willReturn($uuid);
+        $this->uuidGenerator()
+            ->shouldReceive('generate')
+            ->once()
+            ->withNoArgs()
+            ->andReturn($uuid);
     }
 
-    /** @return UuidGenerator|MockObject */
-    protected function uuidGenerator(): MockObject
+    protected function similarTo($value, $delta = 0.0): MatcherAbstract
     {
-        return $this->uuidGenerator = $this->uuidGenerator
-            ?: $this->createMock(UuidGenerator::class);
+        return TestUtils::similarTo($value, $delta);
     }
 
     protected function notify(DomainEvent $event, callable $subscriber): void

@@ -7,21 +7,25 @@ namespace LuisCusihuaman\Tests\Mooc\Courses;
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
 use LuisCusihuaman\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
-use PHPUnit\Framework\MockObject\MockObject;
+use Mockery\MockInterface;
 
 class CoursesModuleUnitTestCase extends UnitTestCase
 {
     private $repository;
 
-    protected function shouldSave(Course $course): void
+    /** @return CourseRepository|MockInterface */
+    protected function repository(): MockInterface
     {
-        // withAnyParameters insted of with(course) because we can't compare the body
-        $this->repository()->method('save')->withAnyParameters();
+        return $this->repository = $this->repository
+            ?: $this->mock(CourseRepository::class);
     }
 
-    /** @return CourseRepository|MockObject */
-    protected function repository(): MockObject
+    protected function shouldSave(Course $course): void
     {
-        return $this->repository = $this->repository ?: $this->createMock(CourseRepository::class);
+        $this->repository()
+            ->shouldReceive('save')
+            ->with($this->similarTo($course))
+            ->once()
+            ->andReturnNull();
     }
 }

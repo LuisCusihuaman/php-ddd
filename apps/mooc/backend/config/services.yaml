@@ -7,6 +7,7 @@ services:
     autoconfigure: true
     autowire: true
 
+  # Configure
   _instanceof:
     LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventSubscriber:
       tags: [ 'luiscusihuaman.domain_event_subscriber' ]
@@ -15,6 +16,11 @@ services:
     resource: '../src/Controller'
     tags: [ 'controller.service_arguments' ]
 
+  LuisCusihuaman\Apps\Mooc\Backend\Command\:
+    resource: '../src/Command'
+    tags: [ 'console.command' ]
+
+  # Wire
   LuisCusihuaman\:
     resource: '../../../../src'
 
@@ -23,6 +29,9 @@ services:
     arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
 
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventMapping:
+    arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventSubscriberLocator:
     arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
 
   LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:

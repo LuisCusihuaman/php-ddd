@@ -3,12 +3,12 @@
 namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
 
 use DateTimeImmutable;
-use Doctrine\DBAL\Driver\Exception;
 use Doctrine\ORM\EntityManager;
 use LuisCusihuaman\Shared\Domain\Utils;
 use RuntimeException;
 use function Lambdish\Phunctional\each;
 use function Lambdish\Phunctional\map;
+
 
 class DoctrineDomainEventsConsumer
 {
@@ -25,12 +25,14 @@ class DoctrineDomainEventsConsumer
     public function consume(callable $subscriber, int $totalEvents): void
     {
         $connection = $this->entityManager->getConnection();
-        $query = "SELECT * FROM domain_events ORDER BY occurred_on ASC LIMIT $totalEvents";
+        $query = "SELECT * FROM domain_events ORDER BY occurred_on ASC LIMIT $totalEvents;";
         $events = $connection->executeQuery($query)->fetchAllAssociative();
 
         each($this->executeSubscriber($subscriber), $events);
-        $ids = implode(', ', map(fn(array $events) => "'${events['id']}'", $events));
-        $connection->executeStatement("DELETE FROM domain_events WHERE id IN ($ids)");
+        $ids = implode(', ', map($this->idExtractor(), $events));
+        if ($ids !== "") {
+            $connection->executeUpdate("DELETE FROM domain_events WHERE id IN($ids)");
+        }
     }
 
     private function executeSubscriber(callable $subscriber): callable
@@ -57,5 +59,12 @@ class DoctrineDomainEventsConsumer
     private function formatDate($stringDate): string
     {
         return Utils::dateToString(new DateTimeImmutable($stringDate));
+    }
+
+    private function idExtractor(): callable
+    {
+        return static function (array $event) {
+            return "'${event['id']}'";
+        };
     }
 }

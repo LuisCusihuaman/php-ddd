@@ -10,7 +10,7 @@ use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventUnserializer;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncDomainEventPublisher;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncEventBus;
-use LuisCusihuaman\Tests\Shared\Infrastructure\Doctrine\DatabaseConnections;
+use LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections;
 use function Lambdish\Phunctional\each;
 
 class ApplicationFeatureContext implements Context

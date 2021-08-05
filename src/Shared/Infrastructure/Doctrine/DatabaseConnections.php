@@ -1,9 +1,10 @@
 <?php
 
 
-namespace LuisCusihuaman\Tests\Shared\Infrastructure\Doctrine;
+namespace LuisCusihuaman\Shared\Infrastructure\Doctrine;
 
 use Doctrine\ORM\EntityManager;
+use LuisCusihuaman\Tests\Shared\Infrastructure\Doctrine\DatabaseCleaner;
 use function Lambdish\Phunctional\apply;
 use function Lambdish\Phunctional\each;
 

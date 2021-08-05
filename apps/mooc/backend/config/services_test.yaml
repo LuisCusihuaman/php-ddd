@@ -11,5 +11,5 @@ services:
 
   LuisCusihuaman\Shared\Domain\RandomNumberGenerator: '@LuisCusihuaman\Tests\Shared\Infrastructure\ConstantRandomNumberGenerator'
 
-  LuisCusihuaman\Tests\Shared\Infrastructure\Doctrine\DatabaseConnections:
+  LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:
     arguments: [ !tagged luiscusihuaman.database_connection ]

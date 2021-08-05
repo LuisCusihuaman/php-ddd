@@ -18,15 +18,19 @@ services:
   LuisCusihuaman\:
     resource: '../../../../src'
 
+  # Dependencies
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncEventBus:
     arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
 
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventMapping:
     arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
 
+  LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:
+    arguments: [ !tagged luiscusihuaman.database_connection ]
+
   LuisCusihuaman\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
-  
+
   # Instance selector
   LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncDomainEventPublisher'

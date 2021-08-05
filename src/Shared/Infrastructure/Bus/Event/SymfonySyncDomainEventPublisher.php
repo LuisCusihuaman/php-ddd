@@ -1,8 +1,10 @@
 <?php
 
 
-namespace LuisCusihuaman\Shared\Domain\Bus\Event;
+namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
 
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
+use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher;
 use function Lambdish\Phunctional\each;
 
 class SymfonySyncDomainEventPublisher implements DomainEventPublisher

@@ -8,7 +8,7 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventUnserializer;
-use LuisCusihuaman\Shared\Domain\Bus\Event\SymfonySyncDomainEventPublisher;
+use LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncDomainEventPublisher;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncEventBus;
 use LuisCusihuaman\Tests\Shared\Infrastructure\Doctrine\DatabaseConnections;
 use function Lambdish\Phunctional\each;
@@ -21,10 +21,10 @@ class ApplicationFeatureContext implements Context
     private $unserializer;
 
     public function __construct(
-        DatabaseConnections $connections,
+        DatabaseConnections             $connections,
         SymfonySyncDomainEventPublisher $publisher,
-        SymfonySyncEventBus $bus,
-        DomainEventUnserializer $unserializer
+        SymfonySyncEventBus             $bus,
+        DomainEventUnserializer         $unserializer
     )
     {
         $this->connections = $connections;

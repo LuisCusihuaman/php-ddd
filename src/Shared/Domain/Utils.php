@@ -2,7 +2,9 @@
 
 namespace LuisCusihuaman\Shared\Domain;
 
+use DateTimeImmutable;
 use DateTimeInterface;
+use Exception;
 use RuntimeException;
 
 final class Utils
@@ -31,5 +33,18 @@ final class Utils
         }
 
         return $data;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function stringToDate(string $date): DateTimeImmutable
+    {
+        return new DateTimeImmutable($date);
+    }
+
+    public static function jsonEncode(array $values): string
+    {
+        return json_encode($values);
     }
 }

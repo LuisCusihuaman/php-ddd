@@ -27,3 +27,6 @@ services:
   LuisCusihuaman\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+  
+  # Instance selector
+  LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncDomainEventPublisher'

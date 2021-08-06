@@ -13,3 +13,6 @@ services:
 
   LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:
     arguments: [ !tagged luiscusihuaman.database_connection ]
+
+  # Instance selector
+  LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncDomainEventPublisher'

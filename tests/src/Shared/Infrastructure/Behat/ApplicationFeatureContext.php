@@ -33,7 +33,7 @@ class ApplicationFeatureContext implements Context
         $this->unserializer = $unserializer;
     }
 
-    /** @BeforeScenario */
+    /** @AfterScenario*/
     public function cleanEnvironment(): void
     {
         $this->connections->clear();

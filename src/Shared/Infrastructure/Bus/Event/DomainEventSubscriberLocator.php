@@ -3,19 +3,22 @@
 namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
 
 use LuisCusihuaman\Shared\Infrastructure\Bus\CallableFirstParameterExtractor;
+use Traversable;
 
 final class DomainEventSubscriberLocator
 {
-    private array $mapping;
+    private $mapping;
 
-    public function __construct(iterable $mapping)
+    public function __construct(Traversable $mapping)
     {
-        $this->mapping = CallableFirstParameterExtractor::forPipedCallables($mapping);
+        $this->mapping = iterator_to_array($mapping);
     }
 
-    public function for(string $eventClass): callable
+    public function for(string $eventClass): array
     {
-        return $this->mapping[$eventClass];
+        $formatted = CallableFirstParameterExtractor::forPipedCallables($this->mapping);
+        $callables = $formatted[$eventClass];
+        return $callables;
     }
 
     public function all(): array

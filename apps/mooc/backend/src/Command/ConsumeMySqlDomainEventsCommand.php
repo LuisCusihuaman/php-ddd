@@ -2,6 +2,7 @@
 
 namespace LuisCusihuaman\Apps\Mooc\Backend\Command;
 
+use Doctrine\DBAL\Driver\Exception;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\DoctrineDomainEventsConsumer;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventSubscriberLocator;
@@ -10,7 +11,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use function Lambdish\Phunctional\apply;
 use function Lambdish\Phunctional\pipe;
 
 
@@ -46,10 +46,16 @@ final class ConsumeMySqlDomainEventsCommand extends Command
     {
         return function (DomainEvent $domainEvent) {
             $subscribers = $this->subscriberLocator->for(get_class($domainEvent));
-            apply($subscribers, $domainEvent);
+            foreach ($subscribers as $subscriber) {
+                $subscriber($domainEvent);
+            }
         };
     }
 
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     * @throws Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $quantityEventsToProcess = (int)$input->getArgument('quantity');

@@ -4,8 +4,8 @@ namespace LuisCusihuaman\Apps\Mooc\Backend\Command;
 
 use Doctrine\DBAL\Driver\Exception;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
-use LuisCusihuaman\Shared\Infrastructure\Bus\Event\DoctrineDomainEventsConsumer;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventSubscriberLocator;
+use LuisCusihuaman\Shared\Infrastructure\Bus\Event\MySql\MySqlDoctrineDomainEventsConsumer;
 use LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,15 +17,15 @@ use function Lambdish\Phunctional\pipe;
 //  php apps/mooc/backend/bin/console luiscusihuaman:consume-domain-events:mysql <quantityEventsToProcess>
 final class ConsumeMySqlDomainEventsCommand extends Command
 {
-    protected static $defaultName = 'luiscusihuaman:consume-domain-events:mysql';
-    private DoctrineDomainEventsConsumer $consumer;
+    protected static $defaultName = 'luiscusihuaman:mysql:consume';
+    private MySqlDoctrineDomainEventsConsumer $consumer;
     private DomainEventSubscriberLocator $subscriberLocator;
     private DatabaseConnections $connections;
 
     public function __construct(
-        DoctrineDomainEventsConsumer $consumer,
-        DatabaseConnections          $connections,
-        DomainEventSubscriberLocator $subscriberLocator
+        MySqlDoctrineDomainEventsConsumer $consumer,
+        DatabaseConnections               $connections,
+        DomainEventSubscriberLocator      $subscriberLocator
     )
     {
         $this->consumer = $consumer;

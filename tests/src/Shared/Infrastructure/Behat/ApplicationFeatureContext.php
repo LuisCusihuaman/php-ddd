@@ -8,27 +8,23 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventUnserializer;
-use LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncDomainEventPublisher;
-use LuisCusihuaman\Shared\Infrastructure\Bus\Event\SymfonySyncEventBus;
+use LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus;
 use LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections;
 use function Lambdish\Phunctional\each;
 
 class ApplicationFeatureContext implements Context
 {
     private $connections;
-    private $publisher;
     private $bus;
     private $unserializer;
 
     public function __construct(
         DatabaseConnections             $connections,
-        SymfonySyncDomainEventPublisher $publisher,
-        SymfonySyncEventBus             $bus,
+        InMemorySymfonyEventBus         $bus,
         DomainEventUnserializer         $unserializer
     )
     {
         $this->connections = $connections;
-        $this->publisher = $publisher;
         $this->bus = $bus;
         $this->unserializer = $unserializer;
     }
@@ -40,17 +36,6 @@ class ApplicationFeatureContext implements Context
         $this->connections->truncate();
     }
 
-    /** @AfterStep */
-    public function publishEvents(): void
-    {
-        while ($this->publisher->hasEventsToPublish()) {
-            each(
-                fn(DomainEvent $event) => $this->bus->notify($event),
-                $this->publisher->popPublishedEvents()
-            );
-        }
-    }
-
     /**
      * @Given /^I send an event to the event bus:$/
      */
@@ -58,6 +43,6 @@ class ApplicationFeatureContext implements Context
     {
         $domainEvent = $this->unserializer->unserialize($event->getRaw());
 
-        $this->bus->notify($domainEvent);
+        $this->bus->publish($domainEvent);
     }
 }

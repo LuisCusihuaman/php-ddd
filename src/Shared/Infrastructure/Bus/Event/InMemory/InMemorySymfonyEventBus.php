@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
+namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory;
 
 
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
@@ -12,7 +12,7 @@ use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 
-class SymfonySyncEventBus implements EventBus
+class InMemorySymfonyEventBus implements EventBus
 {
     private $bus;
 
@@ -29,10 +29,12 @@ class SymfonySyncEventBus implements EventBus
         );
     }
 
-    public function notify(DomainEvent $event): void
+    public function publish(DomainEvent ...$events): void
     {
         try {
-            $this->bus->dispatch($event);
+            foreach ($events as $event){
+                $this->bus->dispatch($event);
+            }
         } catch (NoHandlerForMessageException $error) {
         }
     }

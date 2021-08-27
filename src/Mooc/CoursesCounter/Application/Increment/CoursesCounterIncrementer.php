@@ -8,24 +8,24 @@ use LuisCusihuaman\Mooc\CoursesCounter\Domain\CoursesCounter;
 use LuisCusihuaman\Mooc\CoursesCounter\Domain\CoursesCounterId;
 use LuisCusihuaman\Mooc\CoursesCounter\Domain\CoursesCounterRepository;
 use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
-use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher;
+use LuisCusihuaman\Shared\Domain\Bus\Event\EventBus;
 use LuisCusihuaman\Shared\Domain\UuidGenerator;
 
 final class CoursesCounterIncrementer
 {
     private CoursesCounterRepository $repository;
     private UuidGenerator $uuidGenerator;
-    private DomainEventPublisher $publisher;
+    private EventBus $bus;
 
     public function __construct(
         CoursesCounterRepository $repository,
         UuidGenerator $uuidGenerator,
-        DomainEventPublisher $publisher
+        EventBus $bus
     )
     {
         $this->repository = $repository;
         $this->uuidGenerator = $uuidGenerator;
-        $this->publisher = $publisher;
+        $this->bus = $bus;
     }
 
     private function initializeCounter(): CoursesCounter
@@ -40,7 +40,7 @@ final class CoursesCounterIncrementer
             $counter->increment($courseId);
 
             $this->repository->save($counter);
-            $this->publisher->publish(...$counter->pullDomainEvents());
+            $this->bus->publish(...$counter->pullDomainEvents());
         }
     }
 }

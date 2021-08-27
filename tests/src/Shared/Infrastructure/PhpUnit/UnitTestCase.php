@@ -5,7 +5,7 @@ namespace LuisCusihuaman\Tests\Shared\Infrastructure\PhpUnit;
 
 
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
-use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher;
+use LuisCusihuaman\Shared\Domain\Bus\Event\EventBus;
 use LuisCusihuaman\Shared\Domain\UuidGenerator;
 use LuisCusihuaman\Tests\Shared\Domain\TestUtils;
 use Mockery;
@@ -15,7 +15,7 @@ use Mockery\MockInterface;
 
 abstract class UnitTestCase extends MockeryTestCase
 {
-    private $domainEventPublisher;
+    private $eventBus;
     private $uuidGenerator;
 
     protected function mock(string $className): MockInterface
@@ -23,11 +23,11 @@ abstract class UnitTestCase extends MockeryTestCase
         return Mockery::mock($className);
     }
 
-    /** @return DomainEventPublisher|MockInterface */
-    protected function domainEventPublisher(): MockInterface
+    /** @return EventBus|MockInterface */
+    protected function eventBus(): MockInterface
     {
-        return $this->domainEventPublisher = $this->domainEventPublisher
-            ?: $this->mock(DomainEventPublisher::class);
+        return $this->eventBus = $this->eventBus
+            ?: $this->mock(EventBus::class);
     }
 
     /** @return UuidGenerator|MockInterface */
@@ -39,7 +39,7 @@ abstract class UnitTestCase extends MockeryTestCase
 
     protected function shouldPublishDomainEvent(DomainEvent $domainEvent): void
     {
-        $this->domainEventPublisher()
+        $this->eventBus()
             ->shouldReceive('publish')
             ->with($this->similarTo($domainEvent))
             ->andReturnNull();

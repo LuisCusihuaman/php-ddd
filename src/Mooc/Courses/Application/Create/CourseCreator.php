@@ -9,19 +9,19 @@ use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseRepository;
 use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
-use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventPublisher;
+use LuisCusihuaman\Shared\Domain\Bus\Event\EventBus;
 
 
 class CourseCreator
 {
 
     private CourseRepository $repository;
-    private $publisher;
+    private $bus;
 
-    public function __construct(CourseRepository $repository, DomainEventPublisher $publisher)
+    public function __construct(CourseRepository $repository, EventBus $bus)
     {
         $this->repository = $repository;
-        $this->publisher = $publisher;
+        $this->bus = $bus;
     }
 
     public function __invoke(CreateCourseRequest $request)
@@ -33,6 +33,6 @@ class CourseCreator
         $course = Course::create($id, $name, $duration);
 
         $this->repository->save($course);
-        $this->publisher->publish(...$course->pullDomainEvents());
+        $this->bus->publish(...$course->pullDomainEvents());
     }
 }

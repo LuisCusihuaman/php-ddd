@@ -1,25 +1,27 @@
 <?php
 
-namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
+namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event\MySql;
 
 use DateTimeImmutable;
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\Exception;
 use Doctrine\ORM\EntityManager;
 use LuisCusihuaman\Shared\Domain\Utils;
+use LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventMapping;
 use RuntimeException;
 use function Lambdish\Phunctional\each;
 use function Lambdish\Phunctional\map;
 
 
-class DoctrineDomainEventsConsumer
+class MySqlDoctrineDomainEventsConsumer
 {
 
-    private EntityManager $entityManager;
+    private Connection $connection;
     private DomainEventMapping $eventMapping;
 
     public function __construct(EntityManager $entityManager, DomainEventMapping $eventMapping)
     {
-        $this->entityManager = $entityManager;
+        $this->connection = $entityManager->getConnection();
         $this->eventMapping = $eventMapping;
     }
 
@@ -27,17 +29,16 @@ class DoctrineDomainEventsConsumer
      * @throws \Doctrine\DBAL\Exception
      * @throws Exception
      */
-    public function consume(callable $subscriber, int $totalEvents): void
+    public function consume(callable $subscriber, int $eventsToConsume): void
     {
-        $connection = $this->entityManager->getConnection();
-        $query = "SELECT * FROM domain_events ORDER BY occurred_on LIMIT $totalEvents;";
-        $events = $connection->executeQuery($query)->fetchAllAssociative();
+        $query = "SELECT * FROM domain_events ORDER BY occurred_on LIMIT $eventsToConsume;";
+        $events = $this->connection->executeQuery($query)->fetchAllAssociative();
 
         // Execute every subscribers that is subscribed to specific event
         each($this->executeSubscriber($subscriber), $events);
         $ids = implode(', ', map($this->idExtractor(), $events));
         if ($ids !== "") {
-            $connection->executeStatement("DELETE FROM domain_events WHERE id IN($ids)");
+            $this->connection->executeStatement("DELETE FROM domain_events WHERE id IN($ids)");
         }
     }
 

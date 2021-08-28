@@ -1,4 +1,4 @@
-# DDD php Skeleton
+# PHP-DDD
 
 ## Installation
 
@@ -10,9 +10,16 @@
 
 `curl http://localhost:8030/health-check`
 
-### Subscribers
+### Commands
 
-`docker-compose exec php php apps/mooc/backend/bin/console luiscusihuaman:mysql:consume <quantityEventsToProcess>`
+`docker-compose exec php apps/mooc/backend/bin/console`
+
+```shell
+docker-compose exec php apps/mooc/backend/bin/console luiscusihuaman:mysql:consume <quantityEventsToProcess>
+docker-compose exec php apps/mooc/backend/bin/console luiscusihuaman:rabbitmq:configure
+docker-compose exec php apps/mooc/backend/bin/console luiscusihuaman:rabbitmq:consume <queueName> <quantityEventsToProcess>
+docker-compose exec php apps/mooc/backend/bin/console luiscusihuaman:rabbitmq:generate-supervisor-files <OPT: path>
+```
 
 ## Tests
 

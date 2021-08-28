@@ -17,7 +17,8 @@
     "doctrine/dbal": "2.13.2",
     "doctrine/cache": "^1.8",
     "lambdish/phunctional": "1.0",
-    "symfony/messenger": "^4.4"
+    "symfony/messenger": "^4.4",
+    "symfony/http-foundation": "5.2"
   },
   "require-dev": {
     "ext-xdebug": "*",

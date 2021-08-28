@@ -46,6 +46,13 @@ services:
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
     arguments: [ '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%' ]
 
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqDomainEventsConsumer:
+    arguments:
+      - '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection'
+      - '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventJsonDeserializer'
+      - '%env(RABBITMQ_EXCHANGE)%'
+      - '%env(RABBITMQ_MAX_RETRIES)%'
+
   LuisCusihuaman\Apps\Mooc\Backend\Command\RabbitMq\ConfigureRabbitMqCommand:
     arguments:
       - '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConfigurer'
@@ -61,9 +68,9 @@ services:
         vhost: '%env(RABBITMQ_MOOC_VHOST)%'
         login: '%env(RABBITMQ_LOGIN)%'
         password: '%env(RABBITMQ_PASSWORD)%'
-        read_timeout: 0.2
-        write_timeout: 0.2
-        connect_timeout: 0.2
+        read_timeout: 2
+        write_timeout: 2
+        connect_timeout: 5
 
   # IMPLEMENTATIONS SELECTOR, also APP_ENV must be 'dev'
   LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'

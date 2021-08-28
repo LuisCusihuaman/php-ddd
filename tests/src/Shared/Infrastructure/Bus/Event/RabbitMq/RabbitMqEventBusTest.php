@@ -16,35 +16,47 @@ use RuntimeException;
 
 final class RabbitMqEventBusTest extends InfrastructureTestCase
 {
+    private $connection;
     private $exchangeName;
     private $configurer;
     private $eventBus;
     private $consumer;
     private $fakeSubscriber;
+    private $consumerHasBeenExecuted;
+
+    private function cleanEnvironment(RabbitMqConnection $connection): void
+    {
+        $connection->queue(RabbitMqQueueNameFormatter::format($this->fakeSubscriber))->delete();
+        $connection->queue(RabbitMqQueueNameFormatter::formatRetry($this->fakeSubscriber))->delete();
+        $connection->queue(RabbitMqQueueNameFormatter::formatDeadLetter($this->fakeSubscriber))->delete();
+    }
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $connection = $this->service(RabbitMqConnection::class);
+        $this->connection = $this->service(RabbitMqConnection::class);
 
         $this->exchangeName = 'test_domain_events';
-        $this->configurer = new RabbitMqConfigurer($connection);
-        $this->eventBus = new RabbitMqEventBus($connection, $this->exchangeName);
+        $this->configurer = new RabbitMqConfigurer($this->connection);
+        $this->eventBus = new RabbitMqEventBus($this->connection, $this->exchangeName);
         $this->consumer = new RabbitMqDomainEventsConsumer(
-            $connection,
-            $this->service(DomainEventJsonDeserializer::class)
+            $this->connection,
+            $this->service(DomainEventJsonDeserializer::class),
+            $this->exchangeName,
+            $maxRetries = 1
         );
         $this->fakeSubscriber = new TestAllWorksOnRabbitMqEventsPublished();
-        $queueName = RabbitMqQueueNameFormatter::format($this->fakeSubscriber);
+        $this->consumerHasBeenExecuted = false;
 
-        $connection->queue($queueName)->delete();
+        $this->cleanEnvironment($this->connection);
     }
 
-    private function consumer(DomainEvent ...$expectedDomainEvents): callable
+    private function assertConsumer(DomainEvent ...$expectedDomainEvents): callable
     {
         return function (DomainEvent $domainEvent) use ($expectedDomainEvents): void {
             $this->assertContainsEquals($domainEvent, $expectedDomainEvents);
+            $this->consumerHasBeenExecuted = true;
         };
     }
 
@@ -56,9 +68,11 @@ final class RabbitMqEventBusTest extends InfrastructureTestCase
 
         $this->eventBus->publish($domainEvent);
         $this->consumer->consume(
-            $this->consumer($domainEvent),
+            $this->assertConsumer($domainEvent),
             RabbitMqQueueNameFormatter::format($this->fakeSubscriber)
         );
+
+        $this->assertTrue($this->consumerHasBeenExecuted);
     }
 
     /** @test */
@@ -70,8 +84,20 @@ final class RabbitMqEventBusTest extends InfrastructureTestCase
 
         $this->eventBus->publish($domainEvent);
         $this->consumer->consume(
-            $this->consumer($domainEvent),
+            $this->assertConsumer($domainEvent),
             RabbitMqQueueNameFormatter::format($this->fakeSubscriber)
         );
+
+        $this->assertTrue($this->consumerHasBeenExecuted);
+    }
+
+    /** @test */
+    public function it_should_retry_failed_domain_events(): void
+    {
+    }
+
+    /** @test */
+    public function it_should_send_events_to_dead_letter_after_retry_failed_domain_events(): void
+    {
     }
 }

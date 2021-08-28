@@ -43,6 +43,14 @@ services:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
+    arguments: [ '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%' ]
+
+  LuisCusihuaman\Apps\Mooc\Backend\Command\RabbitMq\ConfigureRabbitMqCommand:
+    arguments:
+      - '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConfigurer'
+      - '%env(RABBITMQ_EXCHANGE)%'
+      - !tagged luiscusihuaman.domain_event_subscriber
 
   # -- APP DEFINITIONS --
   # RabbitMQ
@@ -56,9 +64,6 @@ services:
         read_timeout: 0.2
         write_timeout: 0.2
         connect_timeout: 0.2
-
-  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
-    arguments: [ '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%' ]
 
   # IMPLEMENTATIONS SELECTOR, also APP_ENV must be 'dev'
   LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'

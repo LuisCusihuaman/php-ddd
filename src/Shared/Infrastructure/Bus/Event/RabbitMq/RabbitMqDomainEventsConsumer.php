@@ -30,8 +30,9 @@ final class RabbitMqDomainEventsConsumer
     public function consume(callable $subscriber, string $queueName): void
     {
         try {
-            $this->connection->queue($queueName)
-                ->consume($this->consumer($subscriber));
+            $consumeBySubscriber = $this->consumer($subscriber);
+            $this->connection->queue($queueName)->consume($consumeBySubscriber);
+
         } catch (AMQPQueueException $error) {
             // There is a buf with the amqp-1.9.4 version that throws a non-existing error with php 7
             // Usually AMQPQueueException: Consumer timeout exceed in e.g: test time

@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use function Lambdish\Phunctional\pipe;
 
 
-//  php apps/mooc/backend/bin/console luiscusihuaman:consume-domain-events:mysql <quantityEventsToProcess>
+//  php apps/mooc/backend/bin/console luiscusihuaman:mysql:consume <quantityEventsToProcess>
 final class ConsumeMySqlDomainEventsCommand extends Command
 {
     protected static $defaultName = 'luiscusihuaman:mysql:consume';

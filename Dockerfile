@@ -8,15 +8,8 @@ RUN pecl install amqp-1.9.4 \
     && pecl install apcu-5.1.17 \
     && pecl install xdebug-3.0.4
 
-RUN docker-php-ext-install -j$(nproc) \
-        bcmath \
-        opcache \
-        intl \
-        pdo_mysql \
-    && docker-php-ext-enable \
-        amqp \
-        apcu \
-        opcache
+RUN docker-php-ext-install -j$(nproc) bcmath opcache intl pdo_mysql \
+    && docker-php-ext-enable amqp apcu opcache xdebug
 
 COPY etc/infrastructure/php/ /usr/local/etc/php/
 

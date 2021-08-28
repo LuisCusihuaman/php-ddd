@@ -43,5 +43,22 @@ services:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
-  # Instance selector, also APP_ENV must be 'dev'
-  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'
+
+  # -- APP DEFINITIONS --
+  # RabbitMQ
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection:
+    arguments:
+      - host: '%env(RABBITMQ_HOST)%'
+        port: '%env(RABBITMQ_PORT)%'
+        vhost: '%env(RABBITMQ_MOOC_VHOST)%'
+        login: '%env(RABBITMQ_LOGIN)%'
+        password: '%env(RABBITMQ_PASSWORD)%'
+        read_timeout: 0.2
+        write_timeout: 0.2
+        connect_timeout: 0.2
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
+    arguments: [ '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%' ]
+
+  # IMPLEMENTATIONS SELECTOR, also APP_ENV must be 'dev'
+  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'

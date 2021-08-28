@@ -15,4 +15,4 @@ services:
     arguments: [ !tagged luiscusihuaman.database_connection ]
 
   # Instance selector
-  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'
+#  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'

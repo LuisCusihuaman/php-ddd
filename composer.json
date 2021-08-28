@@ -7,6 +7,7 @@
     "php": "^7.4",
     "ext-apcu": "*",
     "ext-json": "*",
+    "ext-amqp": "*",
     "ext-zend-opcache": "*",
     "ext-pdo": "*",
     "symfony/framework-bundle": "^4.3",

@@ -6,11 +6,9 @@ namespace LuisCusihuaman\Tests\Shared\Infrastructure\Behat;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
-use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
-use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventUnserializer;
+use LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventJsonDeserializer;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus;
 use LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections;
-use function Lambdish\Phunctional\each;
 
 class ApplicationFeatureContext implements Context
 {
@@ -19,9 +17,9 @@ class ApplicationFeatureContext implements Context
     private $unserializer;
 
     public function __construct(
-        DatabaseConnections             $connections,
-        InMemorySymfonyEventBus         $bus,
-        DomainEventUnserializer         $unserializer
+        DatabaseConnections         $connections,
+        InMemorySymfonyEventBus     $bus,
+        DomainEventJsonDeserializer $unserializer
     )
     {
         $this->connections = $connections;
@@ -29,7 +27,7 @@ class ApplicationFeatureContext implements Context
         $this->unserializer = $unserializer;
     }
 
-    /** @AfterScenario*/
+    /** @AfterScenario */
     public function cleanEnvironment(): void
     {
         $this->connections->clear();
@@ -41,7 +39,7 @@ class ApplicationFeatureContext implements Context
      */
     public function iSendAnEventToTheEventBus(PyStringNode $event)
     {
-        $domainEvent = $this->unserializer->unserialize($event->getRaw());
+        $domainEvent = $this->unserializer->deserialize($event->getRaw());
 
         $this->bus->publish($domainEvent);
     }

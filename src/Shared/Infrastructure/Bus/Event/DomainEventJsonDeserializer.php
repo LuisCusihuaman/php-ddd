@@ -5,20 +5,19 @@ namespace LuisCusihuaman\Shared\Infrastructure\Bus\Event;
 
 
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
-use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventUnserializer;
 use LuisCusihuaman\Shared\Domain\Utils;
 use RuntimeException;
 
-final class DomainEventJsonUnserializer implements DomainEventUnserializer
+final class DomainEventJsonDeserializer
 {
-    private $mapping;
+    private DomainEventMapping $mapping;
 
     public function __construct(DomainEventMapping $mapping)
     {
         $this->mapping = $mapping;
     }
 
-    public function unserialize(string $domainEvent): DomainEvent
+    public function deserialize(string $domainEvent): DomainEvent
     {
         $eventData = Utils::jsonDecode($domainEvent);
         $eventName = $eventData['data']['type'];

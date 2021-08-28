@@ -1,6 +1,6 @@
 <?php
 
-namespace LuisCusihuaman\Tests\Shared\Infrastructure\Bus\Event;
+namespace LuisCusihuaman\Tests\Shared\Infrastructure\Bus\Event\MySql;
 
 use Doctrine\ORM\EntityManager;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;

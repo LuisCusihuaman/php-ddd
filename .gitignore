@@ -1,3 +1,12 @@
+/.env.test.local
+/.env.*.local
+
+/apps/*/*/var/
+
+/apps/*/*/build/
+!/apps/*/*/build/supervisor/.gitkeep
+
+/vendor/
 
 # Created by https://www.toptal.com/developers/gitignore/api/phpstorm+all,symfony
 # Edit at https://www.toptal.com/developers/gitignore?templates=phpstorm+all,symfony
@@ -145,7 +154,6 @@ modules.xml
 /bin/*
 !bin/console
 !bin/symfony_requirements
-/vendor/
 
 # Assets and user uploads
 /web/bundles/

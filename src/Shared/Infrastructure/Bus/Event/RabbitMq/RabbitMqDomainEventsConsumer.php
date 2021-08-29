@@ -87,9 +87,10 @@ final class RabbitMqDomainEventsConsumer
     private function sendMessageTo(string $exchangeName, AMQPEnvelope $envelope, AMQPQueue $queue): void
     {
         $headers = $envelope->getHeaders();
+        $routingKey = $queue->getName();
 
         $this->connection->exchange($exchangeName)->publish(
-            $envelope->getBody(), $queue->getName(), AMQP_NOPARAM,
+            $envelope->getBody(), $routingKey, AMQP_NOPARAM,
             [
                 'message_id' => $envelope->getMessageId(),
                 'content_type' => $envelope->getContentType(),

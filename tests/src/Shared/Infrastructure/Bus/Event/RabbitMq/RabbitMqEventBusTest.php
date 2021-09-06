@@ -4,6 +4,7 @@ namespace LuisCusihuaman\Tests\Shared\Infrastructure\Bus\Event\RabbitMq;
 
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventJsonDeserializer;
+use LuisCusihuaman\Shared\Infrastructure\Bus\Event\MySql\MySqlDoctrineEventBus;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConfigurer;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqDomainEventsConsumer;
@@ -40,7 +41,10 @@ final class RabbitMqEventBusTest extends InfrastructureTestCase
 
         $this->exchangeName = 'test_domain_events';
         $this->configurer = new RabbitMqConfigurer($this->connection);
-        $this->eventBus = new RabbitMqEventBus($this->connection, $this->exchangeName);
+        $this->eventBus = new RabbitMqEventBus(
+            $this->connection,
+            $this->exchangeName,
+            $this->service(MySqlDoctrineEventBus::class));
         $this->consumer = new RabbitMqDomainEventsConsumer(
             $this->connection,
             $this->service(DomainEventJsonDeserializer::class),

@@ -1,6 +1,6 @@
 <?php
 
-namespace LuisCusihuaman\Apps\Mooc\Backend\Command\RabbitMq;
+namespace LuisCusihuaman\Apps\Mooc\Backend\Command\DomainEvents\RabbitMq;
 
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventSubscriber;
 use LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventSubscriberLocator;

@@ -53,7 +53,7 @@ final class RabbitMqDomainEventsConsumer
 
         } catch (AMQPQueueException $error) {
             // There is a buf with the amqp-1.9.4 version that throws a non-existing error with php 7
-            // We don't want to raise an error it there are no messages on the queue
+            // We don't want to raise an error if there are no messages in the queue
             // Usually AMQPQueueException: Consumer timeout exceed in e.g: test time
         }
     }

@@ -37,7 +37,7 @@ class MySqlDoctrineDomainEventsConsumer
         // Execute every subscribers that is subscribed to specific event
         each($this->executeSubscriber($subscriber), $events);
         $ids = implode(', ', map($this->idExtractor(), $events));
-        if ($ids !== "") {
+        if (!empty($ids)) {
             $this->connection->executeStatement("DELETE FROM domain_events WHERE id IN($ids)");
         }
     }

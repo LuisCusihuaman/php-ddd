@@ -1,6 +1,6 @@
 <?php
 
-namespace LuisCusihuaman\Apps\Mooc\Backend\Command\MySql;
+namespace LuisCusihuaman\Apps\Mooc\Backend\Command\DomainEvents\MySql;
 
 use Doctrine\DBAL\Driver\Exception;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20b7bcfc88ba272007cbdb6d01924c64",
+    "content-hash": "6d115473b5a1833bc36f7cb3218d52a1",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1081,23 +1081,24 @@
         },
         {
             "name": "lambdish/phunctional",
-            "version": "v1.0.0",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lambdish/phunctional.git",
-                "reference": "999487ad2027336e746aee3f9a4666ea3c54f846"
+                "reference": "ed3482e7da134d886789abb33c6df22a5d2f271c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lambdish/phunctional/zipball/999487ad2027336e746aee3f9a4666ea3c54f846",
-                "reference": "999487ad2027336e746aee3f9a4666ea3c54f846",
+                "url": "https://api.github.com/repos/Lambdish/phunctional/zipball/ed3482e7da134d886789abb33c6df22a5d2f271c",
+                "reference": "ed3482e7da134d886789abb33c6df22a5d2f271c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6.0"
+                "php": ">=7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.0"
+                "phpstan/phpstan": "^0.11.16",
+                "phpunit/phpunit": "^8.4"
             },
             "type": "library",
             "autoload": {
@@ -1111,16 +1112,13 @@
             ],
             "authors": [
                 {
-                    "name": "Jorge Ávila",
-                    "email": "avilacardenosa@gmail.com"
+                    "name": "Eloi Poch"
                 },
                 {
-                    "name": "Rafa Gómez",
-                    "email": "rgomezcasas@gmail.com"
+                    "name": "Jorge Ávila"
                 },
                 {
-                    "name": "Eloi Poch",
-                    "email": "eloi.poch@gmail.com"
+                    "name": "Rafa Gómez"
                 }
             ],
             "description": "λ PHP functional library",
@@ -1133,9 +1131,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Lambdish/phunctional/issues",
-                "source": "https://github.com/Lambdish/phunctional/tree/master"
+                "source": "https://github.com/Lambdish/phunctional/tree/v2.1.0"
             },
-            "time": "2016-09-12T20:33:11+00:00"
+            "time": "2020-09-18T07:22:08+00:00"
         },
         {
             "name": "psr/cache",
@@ -7283,6 +7281,7 @@
         "php": "^7.4",
         "ext-apcu": "*",
         "ext-json": "*",
+        "ext-amqp": "*",
         "ext-zend-opcache": "*",
         "ext-pdo": "*"
     },

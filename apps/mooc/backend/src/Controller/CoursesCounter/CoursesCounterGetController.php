@@ -1,25 +1,27 @@
 <?php
 
+declare(strict_types=1);
 
 namespace LuisCusihuaman\Apps\Mooc\Backend\Controller\CoursesCounter;
 
-
-use LuisCusihuaman\Mooc\CoursesCounter\Application\Find\CoursesCounterFinder;
+use LuisCusihuaman\Mooc\CoursesCounter\Application\Find\CoursesCounterResponse;
+use LuisCusihuaman\Mooc\CoursesCounter\Application\Find\FindCoursesCounterQuery;
+use LuisCusihuaman\Shared\Domain\Bus\Query\QueryBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 final class CoursesCounterGetController
 {
-    private CoursesCounterFinder $finder;
+    private $bus;
 
-    public function __construct(CoursesCounterFinder $finder)
+    public function __construct(QueryBus $bus)
     {
-        $this->finder = $finder;
+        $this->bus = $bus;
     }
 
-    public function __invoke(): Response
+    public function __invoke()
     {
-        $response = $this->finder->__invoke();
+        /** @var CoursesCounterResponse $response */
+        $response = $this->bus->ask(new FindCoursesCounterQuery());
 
         return new JsonResponse(
             [

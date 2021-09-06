@@ -4,7 +4,9 @@
 namespace LuisCusihuaman\Mooc\CoursesCounter\Application\Find;
 
 
-final class CoursesCounterResponse
+use LuisCusihuaman\Shared\Domain\Bus\Query\Response;
+
+final class CoursesCounterResponse implements Response
 {
     private int $total;
 

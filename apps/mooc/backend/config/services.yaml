@@ -13,7 +13,10 @@ services:
       tags: [ 'luiscusihuaman.domain_event_subscriber' ]
 
     LuisCusihuaman\Shared\Domain\Bus\Command\CommandHandler:
-      tags: ['luiscusihuaman.command_handler']
+      tags: [ 'luiscusihuaman.command_handler' ]
+
+    LuisCusihuaman\Shared\Domain\Bus\Query\QueryHandler:
+      tags: [ 'luiscusihuaman.query_handler' ]
 
   LuisCusihuaman\Apps\Mooc\Backend\Controller\:
     resource: '../src/Controller'
@@ -43,6 +46,9 @@ services:
 
   LuisCusihuaman\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
     arguments: [ !tagged luiscusihuaman.command_handler ]
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus:
+    arguments: [ !tagged luiscusihuaman.query_handler ]
 
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
     arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]

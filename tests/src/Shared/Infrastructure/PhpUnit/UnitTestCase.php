@@ -7,6 +7,8 @@ namespace LuisCusihuaman\Tests\Shared\Infrastructure\PhpUnit;
 use LuisCusihuaman\Shared\Domain\Bus\Command\Command;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Domain\Bus\Event\EventBus;
+use LuisCusihuaman\Shared\Domain\Bus\Query\Query;
+use LuisCusihuaman\Shared\Domain\Bus\Query\Response;
 use LuisCusihuaman\Shared\Domain\UuidGenerator;
 use LuisCusihuaman\Tests\Shared\Domain\TestUtils;
 use Mockery;
@@ -53,6 +55,18 @@ abstract class UnitTestCase extends MockeryTestCase
             ->once()
             ->withNoArgs()
             ->andReturn($uuid);
+    }
+
+    protected function assertAskResponse(Response $expected, Query $query, callable $queryHandler): void
+    {
+        $actual = $queryHandler($query);
+        $this->assertEquals($expected, $actual);
+    }
+
+    protected function assertAskThrowsException(string $expectedErrorClass, Query $query, callable $queryHandler): void
+    {
+        $this->expectException($expectedErrorClass);
+        $queryHandler($query);
     }
 
     protected function similarTo($value, $delta = 0.0): MatcherAbstract

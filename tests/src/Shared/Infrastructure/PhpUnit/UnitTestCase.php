@@ -4,6 +4,7 @@
 namespace LuisCusihuaman\Tests\Shared\Infrastructure\PhpUnit;
 
 
+use LuisCusihuaman\Shared\Domain\Bus\Command\Command;
 use LuisCusihuaman\Shared\Domain\Bus\Event\DomainEvent;
 use LuisCusihuaman\Shared\Domain\Bus\Event\EventBus;
 use LuisCusihuaman\Shared\Domain\UuidGenerator;
@@ -62,5 +63,10 @@ abstract class UnitTestCase extends MockeryTestCase
     protected function notify(DomainEvent $event, callable $subscriber): void
     {
         $subscriber($event);
+    }
+
+    protected function dispatch(Command $command, callable $commandHandler): void
+    {
+        $commandHandler($command);
     }
 }

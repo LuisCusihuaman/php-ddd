@@ -12,6 +12,9 @@ services:
     LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventSubscriber:
       tags: [ 'luiscusihuaman.domain_event_subscriber' ]
 
+    LuisCusihuaman\Shared\Domain\Bus\Command\CommandHandler:
+      tags: ['luiscusihuaman.command_handler']
+
   LuisCusihuaman\Apps\Mooc\Backend\Controller\:
     resource: '../src/Controller'
     tags: [ 'controller.service_arguments' ]
@@ -25,11 +28,6 @@ services:
     resource: '../../../../src'
 
   # Dependencies
-  LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
-    arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
-    # https://symfony.com/doc/current/service_container/lazy_services.html
-    lazy: true
-
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventMapping:
     arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
 
@@ -42,6 +40,14 @@ services:
   LuisCusihuaman\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
+    arguments: [ !tagged luiscusihuaman.command_handler ]
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
+    arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
+    # https://symfony.com/doc/current/service_container/lazy_services.html
+    lazy: true
 
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
     arguments: [ '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%' ]
@@ -60,6 +66,7 @@ services:
       - !tagged luiscusihuaman.domain_event_subscriber
 
   # -- APP DEFINITIONS --
+
   # RabbitMQ
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection:
     arguments:
@@ -71,6 +78,7 @@ services:
         read_timeout: 2
         write_timeout: 2
         connect_timeout: 5
+
 
   # IMPLEMENTATIONS SELECTOR, also APP_ENV must be 'dev'
   LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'

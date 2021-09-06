@@ -3,7 +3,7 @@
 
 namespace LuisCusihuaman\Tests\Mooc\Courses\Domain;
 
-use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseRequest;
+use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseCommand;
 use LuisCusihuaman\Mooc\Courses\Domain\Course;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseDuration;
 use LuisCusihuaman\Mooc\Courses\Domain\CourseName;
@@ -16,12 +16,12 @@ final class CourseMother
         return new Course($id, $name, $duration);
     }
 
-    public static function fromRequest(CreateCourseRequest $request): Course
+    public static function fromRequest(CreateCourseCommand $command): Course
     {
         return self::create(
-            CourseIdMother::create($request->id()),
-            CourseNameMother::create($request->name()),
-            CourseDurationMother::create($request->duration())
+            CourseIdMother::create($command->id()),
+            CourseNameMother::create($command->name()),
+            CourseDurationMother::create($command->duration())
         );
     }
 

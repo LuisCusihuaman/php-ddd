@@ -4,7 +4,9 @@
 namespace LuisCusihuaman\Mooc\Courses\Application\Create;
 
 
-final class CreateCourseRequest
+use LuisCusihuaman\Shared\Domain\Bus\Command\Command;
+
+final class CreateCourseCommand implements Command
 {
     private string $id;
     private string $name;

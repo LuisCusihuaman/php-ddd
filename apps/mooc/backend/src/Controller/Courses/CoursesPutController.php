@@ -4,24 +4,24 @@
 namespace LuisCusihuaman\Apps\Mooc\Backend\Controller\Courses;
 
 
-use LuisCusihuaman\Mooc\Courses\Application\Create\CourseCreator;
-use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseRequest;
+use LuisCusihuaman\Mooc\Courses\Application\Create\CreateCourseCommand;
+use LuisCusihuaman\Shared\Domain\Bus\Command\CommandBus;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CoursesPutController
 {
-    private CourseCreator $creator;
+    private $bus;
 
-    public function __construct(CourseCreator $creator)
+    public function __construct(CommandBus $bus)
     {
-        $this->creator = $creator;
+        $this->bus = $bus;
     }
 
     public function __invoke(string $id, Request $request): Response
     {
-        $this->creator->__invoke(
-            new CreateCourseRequest(
+        $this->bus->dispatch(
+            new CreateCourseCommand(
                 $id,
                 $request->request->get('name'),
                 $request->request->get('duration')

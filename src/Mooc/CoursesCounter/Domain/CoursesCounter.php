@@ -5,7 +5,7 @@ namespace LuisCusihuaman\Mooc\CoursesCounter\Domain;
 
 use LuisCusihuaman\Mooc\Shared\Domain\Course\CourseId;
 use LuisCusihuaman\Shared\Domain\Aggregate\AggregateRoot;
-use function Lambdish\Phunctional\reindex;
+use function Lambdish\Phunctional\search;
 
 class CoursesCounter extends AggregateRoot
 {
@@ -20,7 +20,6 @@ class CoursesCounter extends AggregateRoot
         $this->existingCourses = $existingCourses;
     }
 
-
     public static function initialize(CoursesCounterId $id): self
     {
         return new self($id, CoursesCounterTotal::initialize());
@@ -28,11 +27,11 @@ class CoursesCounter extends AggregateRoot
 
     public function hasIncremented(CourseId $courseId): bool
     {
-        $indexedCourses = reindex(fn(CourseId $id) => $id->value(), $this->existingCourses());
+        $existingCourse = search(fn(CourseId $other) => $courseId->equals($other),
+            $this->existingCourses());
 
-        return isset($indexedCourses[$courseId->value()]);
+        return null !== $existingCourse;
     }
-
 
     public function increment(CourseId $courseId): void
     {

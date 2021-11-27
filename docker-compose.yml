@@ -14,7 +14,8 @@ services:
       - .:/www:delegated
     environment:
       # for using e2e behat APP_ENV must be 'test', unit-test works fine with 'dev'
-      - APP_ENV=test
+      - APP_ENV=dev
+      - RABBITMQ_MOOC_VHOST=/
     env_file:
       - .env
     depends_on:

@@ -72,3 +72,8 @@ services:
 
   # -- IMPLEMENTATIONS SELECTOR --
   LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'
+
+
+twig:
+  default_path: '%kernel.project_dir%/templates'
+  strict_variables: true

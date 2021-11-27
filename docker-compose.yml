@@ -14,7 +14,7 @@ services:
       - .:/www:delegated
     environment:
       # for using e2e behat APP_ENV must be 'test', unit-test works fine with 'dev'
-      - APP_ENV=dev
+      - APP_ENV=test
     env_file:
       - .env
     depends_on:
@@ -22,7 +22,7 @@ services:
 
   rabbitmq:
     container_name: luiscusihuaman-php-ddd_rabbitmq
-    image: rabbitmq:3.7-management
+    image: rabbitmq:3.8-management
     restart: unless-stopped
     ports:
       - '5630:5672'

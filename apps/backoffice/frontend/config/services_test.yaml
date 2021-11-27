@@ -1,0 +1,18 @@
+framework:
+  test: true
+
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  LuisCusihuaman\Tests\:
+    resource: '../../../../tests/src'
+
+  LuisCusihuaman\Shared\Domain\RandomNumberGenerator: '@LuisCusihuaman\Tests\Shared\Infrastructure\ConstantRandomNumberGenerator'
+
+  LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:
+    arguments: [ !tagged luiscusihuaman.database_connection ]
+
+  # Instance selector
+#  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'

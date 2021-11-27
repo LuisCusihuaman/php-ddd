@@ -1,0 +1,74 @@
+imports:
+  - { resource: ../../../../src/Mooc/Shared/Infrastructure/Symfony/DependencyInjection/mooc_database.yaml }
+  - { resource: ../../../../src/Mooc/Shared/Infrastructure/Symfony/DependencyInjection/mooc_services.yaml }
+
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  # Configure
+  _instanceof:
+    LuisCusihuaman\Shared\Domain\Bus\Event\DomainEventSubscriber:
+      tags: ['luiscusihuaman.domain_event_subscriber']
+
+    LuisCusihuaman\Shared\Domain\Bus\Command\CommandHandler:
+      tags: ['luiscusihuaman.command_handler']
+
+    LuisCusihuaman\Shared\Domain\Bus\Query\QueryHandler:
+      tags: ['luiscusihuaman.query_handler']
+
+  LuisCusihuaman\Apps\Backoffice\Frontend\Controller\:
+    resource: '../src/Controller'
+    tags: ['controller.service_arguments']
+
+
+  # Wire
+  LuisCusihuaman\:
+    resource: '../../../../src'
+
+  # -- TAGGING --
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
+    arguments: [!tagged luiscusihuaman.domain_event_subscriber]
+    lazy: true
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventMapping:
+    arguments: [!tagged luiscusihuaman.domain_event_subscriber]
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventSubscriberLocator:
+    arguments: [!tagged luiscusihuaman.domain_event_subscriber]
+
+  LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:
+    arguments: [!tagged luiscusihuaman.database_connection]
+
+  LuisCusihuaman\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+
+  # -- APP DEFINITIONS --
+  # Command/Query Handlers
+  LuisCusihuaman\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
+    arguments: [!tagged luiscusihuaman.command_handler]
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus:
+    arguments: [!tagged luiscusihuaman.query_handler]
+
+  # RabbitMQ
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection:
+    arguments:
+      - host: '%env(RABBITMQ_HOST)%'
+        port: '%env(RABBITMQ_PORT)%'
+        vhost: '%env(RABBITMQ_MOOC_VHOST)%'
+        login: '%env(RABBITMQ_LOGIN)%'
+        password: '%env(RABBITMQ_PASSWORD)%'
+        read_timeout: 2
+        write_timeout: 2
+        connect_timeout: 5
+
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
+    arguments: ['@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%']
+
+
+  # -- IMPLEMENTATIONS SELECTOR --
+  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'

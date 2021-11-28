@@ -1,0 +1,15 @@
+{% extends 'master.html.twig' %}
+
+{% block page_title %}Cursos{% endblock %}
+
+{% block main %}
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <img class="w-full" src="https://every-tuesday.com/wp-content/uploads/2016/04/courses.jpg">
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">Cursos</div>
+            <p class="text-gray-700 text-base">
+                Actualmente se cuenta con <b>{{ courses_counter }}</b> cursos.
+            </p>
+        </div>
+    </div>
+{% endblock %}

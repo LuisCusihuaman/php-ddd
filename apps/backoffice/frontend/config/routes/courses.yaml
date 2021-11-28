@@ -1,0 +1,4 @@
+courses_get:
+  path: /courses
+  controller: LuisCusihuaman\Apps\Backoffice\Frontend\Controller\Courses\CoursesGetController
+  methods:  [GET]

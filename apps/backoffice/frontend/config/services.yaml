@@ -78,3 +78,5 @@ services:
 twig:
   default_path: '%kernel.project_dir%/templates'
   strict_variables: true
+  globals:
+    flash: '@LuisCusihuaman\Shared\Infrastructure\Symfony\FlashSession'

@@ -13,9 +13,8 @@ services:
       # delegated: when docker container performs changes, host is in read only mode.
       - .:/www:delegated
     environment:
-      # for using e2e behat APP_ENV must be 'test', unit-test works fine with 'dev'
+      # for using e2e/integration/unit test, must be APP_ENV=test
       - APP_ENV=dev
-      - RABBITMQ_MOOC_VHOST=/
     env_file:
       - .env
     depends_on:
@@ -48,7 +47,8 @@ services:
     image: nginx:1.15-alpine
     restart: unless-stopped
     ports:
-      - '8030:80'
+      - '8030:8080' #mooc/backend
+      - '8032:80' #backoffice/frontend
     volumes:
       - .:/www:delegated
       - ./etc/infrastructure/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro

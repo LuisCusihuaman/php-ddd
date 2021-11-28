@@ -14,5 +14,8 @@ services:
   LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:
     arguments: [ !tagged luiscusihuaman.database_connection ]
 
-  # Instance selector
-#  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'
+  # IMPLEMENTATIONS SELECTOR, must APP_ENV=test
+
+  #  LuisCusihuaman\Shared\Domain\Bus\Command\CommandBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus'
+  #  LuisCusihuaman\Shared\Domain\Bus\Query\QueryBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus'
+  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\MySql\MySqlDoctrineEventBus' #RabbitMqEventBusTest.php#47

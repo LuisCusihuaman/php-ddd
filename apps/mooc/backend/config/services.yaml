@@ -55,6 +55,21 @@ services:
     # https://symfony.com/doc/current/service_container/lazy_services.html
     lazy: true
 
+
+  # -- APP DEFINITIONS --
+
+  # RabbitMQ
+  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection:
+    arguments:
+      - host: '%env(RABBITMQ_HOST)%'
+        port: '%env(RABBITMQ_PORT)%'
+        vhost: '%env(RABBITMQ_MOOC_VHOST)%'
+        login: '%env(RABBITMQ_LOGIN)%'
+        password: '%env(RABBITMQ_PASSWORD)%'
+        read_timeout: 2
+        write_timeout: 2
+        connect_timeout: 5
+
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
     arguments: [ '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%' ]
 
@@ -71,20 +86,10 @@ services:
       - '%env(RABBITMQ_EXCHANGE)%'
       - !tagged luiscusihuaman.domain_event_subscriber
 
-  # -- APP DEFINITIONS --
 
-  # RabbitMQ
-  LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection:
-    arguments:
-      - host: '%env(RABBITMQ_HOST)%'
-        port: '%env(RABBITMQ_PORT)%'
-        vhost: '%env(RABBITMQ_MOOC_VHOST)%'
-        login: '%env(RABBITMQ_LOGIN)%'
-        password: '%env(RABBITMQ_PASSWORD)%'
-        read_timeout: 2
-        write_timeout: 2
-        connect_timeout: 5
+  # IMPLEMENTATIONS SELECTOR, also must APP_ENV=dev
+  # also manual-launch symfony-commands for event-consumers if eventbus is rabbitmq
 
-
-  # IMPLEMENTATIONS SELECTOR, also APP_ENV must be 'dev'
-  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'
+  #  LuisCusihuaman\Shared\Domain\Bus\Command\CommandBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus'
+  #  LuisCusihuaman\Shared\Domain\Bus\Query\QueryBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus'
+  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'

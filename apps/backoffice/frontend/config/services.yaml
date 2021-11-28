@@ -71,7 +71,8 @@ services:
 
 
   # -- IMPLEMENTATIONS SELECTOR --
-  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'
+  # frontend uses inmemory sync bus instead of api, it uses async rabbitmq bus with symfony-commands-consumers
+  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'
 
 
 twig:

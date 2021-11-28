@@ -92,4 +92,4 @@ services:
 
   #  LuisCusihuaman\Shared\Domain\Bus\Command\CommandBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus'
   #  LuisCusihuaman\Shared\Domain\Bus\Query\QueryBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus'
-  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'
+  LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'

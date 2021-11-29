@@ -4,7 +4,6 @@ namespace LuisCusihuaman\Apps\Backoffice\Frontend\Controller\Courses;
 
 use LuisCusihuaman\Mooc\CoursesCounter\Application\Find\CoursesCounterResponse;
 use LuisCusihuaman\Mooc\CoursesCounter\Application\Find\FindCoursesCounterQuery;
-use LuisCusihuaman\Mooc\CoursesCounter\Domain\CoursesCounterNotExist;
 use LuisCusihuaman\Shared\Domain\ValueObject\Uuid;
 use LuisCusihuaman\Shared\Infrastructure\Symfony\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,14 +14,13 @@ final class CoursesGetController extends Controller
 {
     public function __invoke(Request $request): Response
     {
+        $totalCourses = 0;
+
         try {
             /** @var CoursesCounterResponse $response */
-            $coursesCounterResponse = $this->ask(new FindCoursesCounterQuery());
-            $totalCourses = $coursesCounterResponse->total();
+            $response = $this->ask(new FindCoursesCounterQuery());
+            $totalCourses = $response->total();
         } catch (HandlerFailedException $ex) {
-            if ($ex->getPrevious() instanceof CoursesCounterNotExist) {
-                $totalCourses = 0;
-            }
         }
 
         return $this->render(

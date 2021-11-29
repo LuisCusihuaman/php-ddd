@@ -40,11 +40,22 @@ final class CourseCreatedDomainEvent extends DomainEvent
 
     public static function fromPrimitives(
         string $aggregateId,
-        array $body,
+        array  $body,
         string $eventId,
         string $occurredOn
     ): DomainEvent
     {
         return new self($aggregateId, $body['name'], $body['duration'], $eventId, $occurredOn);
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function duration(): string
+    {
+        return $this->duration;
+
     }
 }

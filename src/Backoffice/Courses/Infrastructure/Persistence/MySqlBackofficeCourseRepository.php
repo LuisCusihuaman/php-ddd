@@ -13,4 +13,9 @@ final class MySqlBackofficeCourseRepository extends DoctrineRepository implement
     {
         $this->persist($course);
     }
+
+    public function searchAll(): array
+    {
+        return $this->repository(BackofficeCourse::class)->findAll();
+    }
 }

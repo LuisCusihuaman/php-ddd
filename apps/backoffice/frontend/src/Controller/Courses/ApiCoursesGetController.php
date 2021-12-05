@@ -4,7 +4,7 @@ namespace LuisCusihuaman\Apps\Backoffice\Frontend\Controller\Courses;
 
 use LuisCusihuaman\Backoffice\Courses\Application\BackofficeCourseResponse;
 use LuisCusihuaman\Backoffice\Courses\Application\BackofficeCoursesResponse;
-use LuisCusihuaman\Backoffice\Courses\Application\SearchAll\SearchAllBackofficeCoursesQuery;
+use LuisCusihuaman\Backoffice\Courses\Application\SearchByCriteria\SearchBackofficeCoursesByCriteriaQuery;
 use LuisCusihuaman\Shared\Infrastructure\Symfony\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +15,15 @@ final class ApiCoursesGetController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         /** @var BackofficeCoursesResponse $response */
-        $response = $this->ask(new SearchAllBackofficeCoursesQuery());
+        $response = $this->ask(
+            new SearchBackofficeCoursesByCriteriaQuery(
+                $request->query->get('filters', []),
+                $request->query->get('order_by'),
+                $request->query->get('order'),
+                $request->query->get('limit'),
+                $request->query->get('offset')
+            )
+        );
 
         $arrayOfJsonCourses = map($this->toArray(), $response->courses());
         return new JsonResponse($arrayOfJsonCourses);

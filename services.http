@@ -1,0 +1,10 @@
+GET http://localhost:8030/courses-counter
+
+### Send POST request with json body
+PUT http://localhost:8030/courses/d1b04d1e-ab69-4a0e-b3aa-bdacdebc91f3
+Content-Type: application/json
+
+{
+  "name": "perron",
+  "duration": "2d"
+}

@@ -21,7 +21,8 @@
     "symfony/messenger": "^4.4",
     "symfony/http-foundation": "^4.3",
     "symfony/twig-bundle": "^4.4",
-    "symfony/validator": "4.4"
+    "symfony/validator": "4.4",
+    "elasticsearch/elasticsearch": "7.3"
   },
   "require-dev": {
     "ext-xdebug": "*",

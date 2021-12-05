@@ -6,6 +6,7 @@ namespace LuisCusihuaman\Tests\Shared\Infrastructure\PhpUnit;
 
 use Doctrine\ORM\EntityManager;
 use LuisCusihuaman\Tests\Mooc\Shared\Infrastructure\PhpUnit\MoocEnvironmentArranger;
+use LuisCusihuaman\Tests\Shared\Domain\TestUtils;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 abstract class InfrastructureTestCase extends KernelTestCase
@@ -30,4 +31,10 @@ abstract class InfrastructureTestCase extends KernelTestCase
     {
         return self::$container->getParameter($parameter);
     }
+
+    protected function assertSimilar($expected, $actual): void
+    {
+        TestUtils::assertSimilar($expected, $actual);
+    }
+
 }

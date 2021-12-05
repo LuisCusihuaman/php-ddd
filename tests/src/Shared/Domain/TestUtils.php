@@ -20,4 +20,12 @@ final class TestUtils
     {
         return new BusinessMatcherIsSimilar($value, $delta);
     }
+
+    public static function assertSimilar($expected, $actual): void
+    {
+        $constraint = new BusinessConstraintIsSimilar($expected);
+
+        $constraint->evaluate($actual);
+    }
+
 }

@@ -21,7 +21,7 @@ class CourseDurationMother
         return self::create(
             sprintf(
                 '%s %s',
-                IntegerMother::random(),
+                IntegerMother::lessThan(100),
                 RandomElementPicker::from('months', 'years', 'days', 'hours', 'minutes', 'seconds')
             )
         );

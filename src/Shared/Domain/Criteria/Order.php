@@ -18,9 +18,14 @@ class Order
         return $orderBy === null ? self::none() : new Order(new OrderBy($orderBy), new OrderType($order));
     }
 
-    private static function none(): Order
+    public static function none(): Order
     {
         return new Order(new OrderBy(""), OrderType::none());
+    }
+
+    public static function createDesc(OrderBy $orderBy): Order
+    {
+        return new self($orderBy, OrderType::desc());
     }
 
     public function isNone(): bool

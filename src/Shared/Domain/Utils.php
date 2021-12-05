@@ -73,4 +73,9 @@ final class Utils
         }
         return $results;
     }
+
+    public static function toCamelCase(string $text): string
+    {
+        return lcfirst(str_replace('_', '', ucwords($text, '_')));
+    }
 }

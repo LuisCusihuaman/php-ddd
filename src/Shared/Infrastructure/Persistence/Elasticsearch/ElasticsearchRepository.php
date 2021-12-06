@@ -32,8 +32,10 @@ abstract class ElasticsearchRepository
     protected function searchRawElasticsearchQuery(array $params): array
     {
         try {
-            $result = $this->client->client()->search(array_merge(['index' => $this->indexName()], $params));
+            $query = array_merge(['index' => $this->indexName()], $params);
+            usleep(3 * 1000); // It gives time to wait for the shards to have the new records in the indexes
 
+            $result = $this->client->client()->search($query);
             $hits = get_in(['hits', 'hits'], $result, []);
 
             return map(static fn(array $elasticValues): array => $elasticValues['_source'], $hits);

@@ -69,6 +69,15 @@ services:
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
     arguments: ['@LuisCusihuaman\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%']
 
+  LuisCusihuaman\Shared\Infrastructure\Elasticsearch\ElasticsearchClient:
+    factory: '@LuisCusihuaman\Shared\Infrastructure\Elasticsearch\ElasticsearchClientFactory'
+    arguments:
+      - '%env(BACKOFFICE_ELASTICSEARCH_HOST)%'
+      - '%env(BACKOFFICE_ELASTICSEARCH_INDEX_PREFIX)%'
+      - '%kernel.project_dir%/../../../databases/backoffice'
+      - '%env(APP_ENV)%'
+    public: true
+
 
   # -- IMPLEMENTATIONS SELECTOR --
   # frontend uses inmemory sync bus instead of api, it uses async rabbitmq bus with symfony-commands-consumers

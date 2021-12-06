@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
 use RuntimeException;
+use function Lambdish\Phunctional\filter;
 
 final class Utils
 {
@@ -77,5 +78,15 @@ final class Utils
     public static function toCamelCase(string $text): string
     {
         return lcfirst(str_replace('_', '', ucwords($text, '_')));
+    }
+
+    public static function filesIn(string $path, $fileType): array
+    {
+        return filter(
+            static function (string $possibleModule) use ($fileType) {
+                return strstr($possibleModule, $fileType);
+            },
+            scandir($path)
+        );
     }
 }

@@ -2,13 +2,15 @@
 
 namespace LuisCusihuaman\Tests\Backoffice\Courses;
 
-use LuisCusihuaman\Backoffice\Courses\Domain\BackofficeCourseRepository;
+use Doctrine\ORM\EntityManager;
+use LuisCusihuaman\Backoffice\Courses\Infrastructure\Persistence\MySqlBackofficeCourseRepository;
 use LuisCusihuaman\Tests\Mooc\Shared\Infrastructure\PhpUnit\MoocContextInfrastructureTestCase;
 
 abstract class BackofficeCoursesModuleInfrastructureTestCase extends MoocContextInfrastructureTestCase
 {
-    protected function repository(): BackofficeCourseRepository
+    protected function repository(): MySqlBackofficeCourseRepository
     {
-        return $this->service(BackofficeCourseRepository::class);
+        return new MySqlBackofficeCourseRepository($this->service(EntityManager::class));
+
     }
 }

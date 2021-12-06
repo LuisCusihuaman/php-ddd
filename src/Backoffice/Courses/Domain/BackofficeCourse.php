@@ -12,8 +12,8 @@ final class BackofficeCourse extends AggregateRoot
 
     public function __construct(string $id, string $name, string $duration)
     {
-        $this->id       = $id;
-        $this->name     = $name;
+        $this->id = $id;
+        $this->name = $name;
         $this->duration = $duration;
     }
 
@@ -30,5 +30,19 @@ final class BackofficeCourse extends AggregateRoot
     public function duration(): string
     {
         return $this->duration;
+    }
+
+    public function toPrimitives(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'duration' => $this->duration,
+        ];
+    }
+
+    public static function fromPrimitives(array $primitives): BackofficeCourse
+    {
+        return new self($primitives['id'], $primitives['name'], $primitives['duration']);
     }
 }

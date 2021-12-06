@@ -27,8 +27,11 @@ services:
     tags: [ 'console.command' ]
 
   # Wire
-  LuisCusihuaman\:
-    resource: '../../../../src'
+  LuisCusihuaman\Shared\:
+    resource: '../../../../src/Shared'
+
+  LuisCusihuaman\Mooc\:
+    resource: '../../../../src/Mooc'
 
   # Dependencies
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\DomainEventMapping:

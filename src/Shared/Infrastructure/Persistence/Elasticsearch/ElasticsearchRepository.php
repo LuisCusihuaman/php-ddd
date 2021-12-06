@@ -3,6 +3,7 @@
 namespace LuisCusihuaman\Shared\Infrastructure\Persistence\Elasticsearch;
 
 use Elasticsearch\Common\Exceptions\Missing404Exception;
+use LuisCusihuaman\Shared\Domain\Criteria;
 use LuisCusihuaman\Shared\Infrastructure\Elasticsearch\ElasticsearchClient;
 use function Lambdish\Phunctional\get_in;
 use function Lambdish\Phunctional\map;
@@ -44,5 +45,14 @@ abstract class ElasticsearchRepository
     protected function indexName(): string
     {
         return sprintf('%s_%s', $this->client->indexPrefix(), $this->aggregateName());
+    }
+
+    public function searchByCriteria(Criteria $criteria): array
+    {
+        $converter = new ElasticsearchCriteriaConverter();
+
+        $query = $converter->convert($criteria);
+
+        return $this->searchRawElasticsearchQuery($query);
     }
 }

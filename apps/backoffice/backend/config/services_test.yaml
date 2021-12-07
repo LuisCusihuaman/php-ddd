@@ -1,0 +1,14 @@
+framework:
+  test: true
+
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  LuisCusihuaman\Tests\:
+    resource: '../../../../tests/src'
+
+
+  LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:
+    arguments: [ !tagged luiscusihuaman.database_connection ]

@@ -18,7 +18,7 @@ services:
     LuisCusihuaman\Shared\Domain\Bus\Query\QueryHandler:
       tags: [ 'luiscusihuaman.query_handler' ]
 
-  LuisCusihuaman\Apps\Backoffice\Frontend\Controller\:
+  LuisCusihuaman\Apps\Backoffice\Backend\Controller\:
     resource: '../src/Controller'
     tags: [ 'controller.service_arguments' ]
 
@@ -87,7 +87,7 @@ services:
 
 
   # -- IMPLEMENTATIONS SELECTOR --
-  # frontend uses inmemory sync bus instead of api, it uses async rabbitmq bus with symfony-commands-consumers
+  # Backend uses inmemory sync bus instead of api, it uses async rabbitmq bus with symfony-commands-consumers
   LuisCusihuaman\Shared\Domain\Bus\Event\EventBus: '@LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'
   LuisCusihuaman\Backoffice\Courses\Domain\BackofficeCourseRepository: '@LuisCusihuaman\Backoffice\Courses\Infrastructure\Persistence\MySqlBackofficeCourseRepository'
 

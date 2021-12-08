@@ -42,4 +42,9 @@ class Order
     {
         return $this->orderType;
     }
+
+    public function serialize(): string
+    {
+        return sprintf('%s.%s', $this->orderBy->value(), $this->orderType->value());
+    }
 }

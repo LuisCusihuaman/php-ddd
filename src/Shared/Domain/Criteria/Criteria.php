@@ -51,4 +51,15 @@ final class Criteria
     {
         return $this->limit;
     }
+
+    public function serialize(): string
+    {
+        return sprintf(
+            '%s~~%s~~%s~~%s',
+            $this->filters->serialize(),
+            $this->order->serialize(),
+            $this->offset,
+            $this->limit
+        );
+    }
 }

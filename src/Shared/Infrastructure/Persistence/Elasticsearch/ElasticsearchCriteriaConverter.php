@@ -2,7 +2,7 @@
 
 namespace LuisCusihuaman\Shared\Infrastructure\Persistence\Elasticsearch;
 
-use LuisCusihuaman\Shared\Domain\Criteria;
+use LuisCusihuaman\Shared\Domain\Criteria\Criteria;
 use function Lambdish\Phunctional\reduce;
 
 final class ElasticsearchCriteriaConverter

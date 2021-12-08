@@ -2,7 +2,7 @@
 
 namespace LuisCusihuaman\Tests\Backoffice\Courses\Domain;
 
-use LuisCusihuaman\Shared\Domain\Criteria;
+use LuisCusihuaman\Shared\Domain\Criteria\Criteria;
 use LuisCusihuaman\Tests\Shared\Domain\Criteria\CriteriaMother;
 use LuisCusihuaman\Tests\Shared\Domain\Criteria\FilterMother;
 use LuisCusihuaman\Tests\Shared\Domain\Criteria\FiltersMother;

@@ -1,9 +1,6 @@
 <?php
 
-namespace LuisCusihuaman\Shared\Domain;
-
-use LuisCusihuaman\Shared\Domain\Criteria\Filters;
-use LuisCusihuaman\Shared\Domain\Criteria\Order;
+namespace LuisCusihuaman\Shared\Domain\Criteria;
 
 final class Criteria
 {

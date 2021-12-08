@@ -3,7 +3,7 @@
 namespace LuisCusihuaman\Backoffice\Courses\Domain;
 
 
-use LuisCusihuaman\Shared\Domain\Criteria;
+use LuisCusihuaman\Shared\Domain\Criteria\Criteria;
 
 interface BackofficeCourseRepository
 {

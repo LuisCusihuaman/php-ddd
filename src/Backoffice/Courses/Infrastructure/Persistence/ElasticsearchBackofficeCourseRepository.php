@@ -4,7 +4,7 @@ namespace LuisCusihuaman\Backoffice\Courses\Infrastructure\Persistence;
 
 use LuisCusihuaman\Backoffice\Courses\Domain\BackofficeCourse;
 use LuisCusihuaman\Backoffice\Courses\Domain\BackofficeCourseRepository;
-use LuisCusihuaman\Shared\Domain\Criteria;
+use LuisCusihuaman\Shared\Domain\Criteria\Criteria;
 use LuisCusihuaman\Shared\Infrastructure\Persistence\Elasticsearch\ElasticsearchRepository;
 use function Lambdish\Phunctional\map;
 

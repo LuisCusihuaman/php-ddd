@@ -3,7 +3,7 @@
 namespace LuisCusihuaman\Shared\Infrastructure\Persistence\Elasticsearch;
 
 use Elasticsearch\Common\Exceptions\Missing404Exception;
-use LuisCusihuaman\Shared\Domain\Criteria;
+use LuisCusihuaman\Shared\Domain\Criteria\Criteria;
 use LuisCusihuaman\Shared\Infrastructure\Elasticsearch\ElasticsearchClient;
 use function Lambdish\Phunctional\get_in;
 use function Lambdish\Phunctional\map;

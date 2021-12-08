@@ -6,7 +6,7 @@ use LuisCusihuaman\Backoffice\Courses\Application\BackofficeCourseResponse;
 use LuisCusihuaman\Backoffice\Courses\Application\BackofficeCoursesResponse;
 use LuisCusihuaman\Backoffice\Courses\Domain\BackofficeCourse;
 use LuisCusihuaman\Backoffice\Courses\Domain\BackofficeCourseRepository;
-use LuisCusihuaman\Shared\Domain\Criteria;
+use LuisCusihuaman\Shared\Domain\Criteria\Criteria;
 use LuisCusihuaman\Shared\Domain\Criteria\Filters;
 use LuisCusihuaman\Shared\Domain\Criteria\Order;
 use function Lambdish\Phunctional\map;

@@ -5,7 +5,7 @@ namespace LuisCusihuaman\Shared\Infrastructure\Persistence\Doctrine;
 use Doctrine\Common\Collections\Criteria as DoctrineCriteria;
 use Doctrine\Common\Collections\Expr\Comparison;
 use Doctrine\Common\Collections\Expr\CompositeExpression;
-use LuisCusihuaman\Shared\Domain\Criteria;
+use LuisCusihuaman\Shared\Domain\Criteria\Criteria;
 use LuisCusihuaman\Shared\Domain\Criteria\Filter;
 use LuisCusihuaman\Shared\Domain\Criteria\FilterField;
 use LuisCusihuaman\Shared\Domain\Criteria\FilterValue;

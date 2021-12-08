@@ -2,7 +2,7 @@
 
 namespace LuisCusihuaman\Tests\Shared\Domain\Criteria;
 
-use LuisCusihuaman\Shared\Domain\Criteria;
+use LuisCusihuaman\Shared\Domain\Criteria\Criteria;
 use LuisCusihuaman\Shared\Domain\Criteria\Filters;
 use LuisCusihuaman\Shared\Domain\Criteria\Order;
 use LuisCusihuaman\Tests\Shared\Domain\IntegerMother;

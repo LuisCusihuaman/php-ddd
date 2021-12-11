@@ -1,9 +1,9 @@
 courses_get:
   path: /courses
-  controller: LuisCusihuaman\Apps\Backoffice\Frontend\Controller\Courses\CoursesGetController
+  controller: LuisCusihuaman\Apps\Backoffice\Frontend\Controller\Courses\CoursesGetWebController
   methods:  [GET]
 
 courses_post:
   path: /courses
-  controller: LuisCusihuaman\Apps\Backoffice\Frontend\Controller\Courses\CoursesPostController
+  controller: LuisCusihuaman\Apps\Backoffice\Frontend\Controller\Courses\CoursesPostWebController
   methods:  [POST]

@@ -1,5 +1,5 @@
 courses_get:
   path: /courses
   controller: LuisCusihuaman\Apps\Backoffice\Backend\Controller\Courses\CoursesGetController
-  defaults: { auth: true }
+#  defaults: { auth: true } # 👈 turn up auth module in this route
   methods:  [GET]

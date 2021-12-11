@@ -5,12 +5,12 @@ namespace LuisCusihuaman\Apps\Backoffice\Frontend\Controller\Courses;
 use LuisCusihuaman\Mooc\CoursesCounter\Application\Find\CoursesCounterResponse;
 use LuisCusihuaman\Mooc\CoursesCounter\Application\Find\FindCoursesCounterQuery;
 use LuisCusihuaman\Shared\Domain\ValueObject\Uuid;
-use LuisCusihuaman\Shared\Infrastructure\Symfony\Controller;
+use LuisCusihuaman\Shared\Infrastructure\Symfony\WebController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 
-final class CoursesGetController extends Controller
+final class CoursesGetWebController extends WebController
 {
     public function __invoke(Request $request): Response
     {

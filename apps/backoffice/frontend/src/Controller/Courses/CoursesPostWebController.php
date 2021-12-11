@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Validation;
 
 final class CoursesPostWebController extends WebController
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): RedirectResponse
     {
         $validationErrors = $this->validateRequest($request);
 
@@ -50,6 +50,11 @@ final class CoursesPostWebController extends WebController
             'courses_get',
             sprintf('Feliciades, el curso %s ha sido creado!', $request->request->get('name'))
         );
+    }
+
+    protected function exceptions(): array
+    {
+        return [];
     }
 }
 

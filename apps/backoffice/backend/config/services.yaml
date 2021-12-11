@@ -52,6 +52,10 @@ services:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
+  LuisCusihuaman\Shared\Infrastructure\Symfony\ApiExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception, method: onException }
+
   LuisCusihuaman\Shared\Infrastructure\Symfony\BasicHttpAuthMiddleware:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

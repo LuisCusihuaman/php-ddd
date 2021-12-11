@@ -33,4 +33,9 @@ final class CoursesGetWebController extends WebController
             ]
         );
     }
+
+    protected function exceptions(): array
+    {
+        return [];
+    }
 }

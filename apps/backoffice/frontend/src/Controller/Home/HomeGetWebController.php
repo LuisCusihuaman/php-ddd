@@ -19,4 +19,9 @@ final class HomeGetWebController extends WebController
                 'description' => 'LuisCusihuaman - Backoffice',
             ]);
     }
+
+    protected function exceptions(): array
+    {
+        return [];
+    }
 }

@@ -5,6 +5,7 @@ namespace LuisCusihuaman\Shared\Domain;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
+use ReflectionClass;
 use RuntimeException;
 use function Lambdish\Phunctional\filter;
 
@@ -88,5 +89,12 @@ final class Utils
             },
             scandir($path)
         );
+    }
+
+    public static function extractClassName(object $object): string
+    {
+        $reflect = new ReflectionClass($object);
+
+        return $reflect->getShortName();
     }
 }

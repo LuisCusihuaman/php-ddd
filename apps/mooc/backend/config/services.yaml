@@ -42,6 +42,10 @@ services:
   LuisCusihuaman\Shared\Infrastructure\Doctrine\DatabaseConnections:
     arguments: [ !tagged luiscusihuaman.database_connection ]
 
+  LuisCusihuaman\Shared\Infrastructure\Symfony\ApiExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception, method: onException }
+
   LuisCusihuaman\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

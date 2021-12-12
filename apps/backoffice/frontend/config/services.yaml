@@ -34,6 +34,11 @@ services:
   LuisCusihuaman\Mooc\:
     resource: '../../../../src/Mooc'
 
+ # Only if you want to persist domain events in memory - rabbitmq not supported
+#  LuisCusihuaman\Analytics\:
+#    resource: '../../../../src/Analytics'
+
+
   # -- TAGGING --
   LuisCusihuaman\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
     arguments: [ !tagged luiscusihuaman.domain_event_subscriber ]
